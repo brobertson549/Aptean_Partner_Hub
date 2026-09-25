@@ -3262,6 +3262,8 @@ function renderHome(){
   const hero=`<section class="hero">
     <div class="bg" style="background-image:url('${A.bgHero}')"></div><div class="vl"></div>
     <div class="in">
+      <div style="display:flex;gap:18px;align-items:flex-start">
+        ${(PartnerProfile.get().logo?`<div style="flex:none;width:76px;height:76px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;padding:8px;box-shadow:0 2px 12px rgba(0,0,0,.25)"><img src="${Er(PartnerProfile.get().logo)}" alt="" style="max-width:100%;max-height:100%;object-fit:contain"></div>`:'')}
       <div>
         <div class="kick" style="color:rgba(255,255,255,.62)">${E('Aptean Global Partner Program')}</div>
         <h1 style="margin-top:5px">${E(P.name)}</h1>
@@ -3273,7 +3275,7 @@ function renderHome(){
           ${P.regions.map(r=>`<span class="ep ${r.on?'on':'off'}">${E(r.c)}</span>`).join('')}
           <button class="mg" data-act="ents">${E('manage')}</button>
         </div>
-      </div>
+      </div></div>
       <div class="hstats">
         <div class="hstat"><div class="v num">${DEALS.filter(x=>x.ph<3).length}</div><div class="l">${E('Active deals')}</div></div>
         <div class="hstat"><div class="v num">${money(DEALS.filter(x=>x.ph<3).reduce((s,d)=>s+d.v,0))}</div><div class="l">${E('In flight')}</div></div>
@@ -3283,7 +3285,7 @@ function renderHome(){
     <div class="ticker"><span class="tag">${E(NEWS[0].t)}</span><span class="tx">${E(NEWS[0].h)}</span>
       <a class="mo" href="#" data-nav="home">${E('Latest')} · ${E(NEWS[0].d)} →</a></div></section>`;
 
-  const gauges=`<div class="glabel"><span class="kick">${E('At a glance')}</span><span class="fresh">${E('Updated 6:00 AM today')}</span></div>
+  const gauges=`<div class="glabel" style="margin-top:26px"><span class="kick">${E('Your numbers in detail')}</span><span class="fresh">${E('Updated 6:00 AM today')}</span></div>
     <div class="gauges">${GAUGES.map(g=>`<div class="g">
       <div class="gl">${E(g.l)}</div><div class="gv num">${g.v}<i>${E(g.u)}</i></div>
       <div class="gt"><i style="width:${g.pct}%;background:${g.c}"></i></div>
@@ -3337,7 +3339,7 @@ function renderHome(){
         <div class="nm"><span class="pill" style="background:${n.c}">${E(n.t)}</span>${E(n.d)}</div>
         <h4>${E(n.h)}</h4><p>${E(n.b)}</p><div class="rd">${E('Read more →')}</div></article>`).join('')}</div></div>`;
 
-  document.getElementById('view').innerHTML=hero+whereYouAre()+board+quick+gauges+certs+news+footer();
+  document.getElementById('view').innerHTML=hero+whereYouAre()+board+quick+certs+news+gauges+footer();
 }
 function nextAction(d){
   const {w,i,s}=activeStage(d);
@@ -3455,7 +3457,7 @@ const PROD_PAT=[['EAM',/\beam\b|maximo|fiix|asset management/],
   ['Logility',/logility|supply chain|demand plan|s&op|network design/],
   ['Paragon',/paragon|routing|route optim|fleet|multi-depot/],
   ['PLM',/\bplm\b|lifecycle|formulation|spec management|label compliance/],
-  ['ERP',/\berp\b|food & beverage|process manufactur/]];
+  ['ERP',/(?<!beyond )\berp\b|food & beverage|process manufactur/]];
 /* Program-wide rather than product-specific. */
 const CROSS_PAT=/partner program guide|rules of engagement|mdf claim|quarterly business review|tier requirements|brand kit|co-branded email|booth kit|partner onboarding|new partner onboarding|enablement calendar|certification enrollment|security whitepaper|api & integration reference/;
 
@@ -5019,8 +5021,9 @@ function openMaterial(name){
       <div class="ds"><h4>${E('Products')}</h4>
         <p style="margin:0 0 10px;font-size:12px;color:var(--ink-3)">${E('Which products this material serves. Set here or in bulk on the Product mapping table.')}</p>
         <div class="ppchips">${PRODUCTS.map(k=>`<button class="ppchip ${m.prods.indexOf(k)>=0?'on':''}"
-          ${m.cross?'disabled':''} data-mprod="${Er(k)}">${Er(k)}</button>`).join('')}
-          <button class="ppchip ${m.cross?'on':''}" data-mcross="1">${E('All products')}</button></div></div>
+          data-mprod="${Er(k)}">${Er(k)}</button>`).join('')}
+          <button class="ppchip ${m.cross?'on':''}" data-mcross="1">${E('All products')}</button></div>
+        <p class="ppnote">${m.cross?E('Marked as applying to every product. Pick a specific product and it switches to that one.'):E('Pick every product this serves. The first picked is primary.')}</p></div>
 
       <div class="ds"><h4>${E('Languages')}</h4>
         <div class="ppchips">${LOCALES.map(l=>`<button class="ppchip ${m.loc.indexOf(l)>=0?'on':''}" data-mloc="${Er(l)}">${l}</button>`).join('')}</div>
@@ -5441,22 +5444,27 @@ function complianceCard(){
 function whereYouAre(){
   const cards=[];
   if(!onboardComplete()){ const i=obActive(), s=ONBOARD.stages[Math.min(i,5)];
-    cards.push(`<div class="card"><div class="k">${E('Onboarding')}</div><h3>${E(s.n)}</h3>
-      <div class="big">${obPct()}%</div><div class="sm">${E('Stage')} ${i+1} ${E('of')} ${ONBOARD.stages.length} · ${gateMet(s,i)?E('gate met — complete it'):E(s.gate)}</div>
+    cards.push(`<div class="card"><div class="k">${E('Getting started')}</div><h3>${E('Stage')} ${i+1} ${E('of')} ${ONBOARD.stages.length}: ${E(s.n)}</h3>
+      <div class="ppmeter" style="margin:10px 0 8px"><i style="width:${obPct()}%"></i></div>
+      <div class="sm">${gateMet(s,i)?E('Everything for this stage is done — mark it complete to unlock the next.'):E('To finish it:')+' '+E(s.gate).toLowerCase()+'.'}</div>
       <button class="go" data-nav="onboard">${E('Continue')} →</button></div>`); }
-  if(DEALS.length){ const byPh=WS.map((w,i)=>DEALS.filter(d=>d.ph===i).length);
+  if(DEALS.length){ const byPh=WS.map((w,i)=>({w,n:DEALS.filter(d=>d.ph===i).length})).filter(x=>x.n);
     const nxt=DEALS.slice().sort((a,b)=>overall(b)-overall(a))[0]; const {w,s}=activeStage(nxt);
-    cards.push(`<div class="card"><div class="k">${E('Deals')}</div><h3>${DEALS.length} ${E('in flight')}</h3>
-      <div class="big">${byPh.map((n,i)=>`<span style="color:${WS[i].color}">${n}</span>`).join('<span style="color:var(--line);font-weight:300"> / </span>')}</div>
-      <div class="sm">${WS.map(x=>E(x.short)).join(' / ')} · ${E('closest to a gate:')} <b>${E(nxt.cu)}</b> — ${E(s.n)}</div>
-      <button class="go" data-deal="${Er(nxt.id)}">${E('Open')} →</button></div>`); }
+    cards.push(`<div class="card"><div class="k">${E('Your deals')}</div>
+      <h3>${DEALS.length===1?E('1 deal in flight'):DEALS.length+' '+E('deals in flight')}</h3>
+      <div class="ppchips" style="margin:8px 0 10px">${byPh.map(x=>`<span class="pill" style="background:${x.w.color};color:#fff">${x.n} ${E(x.w.short)}</span>`).join('')}</div>
+      <div class="sm">${E('Closest to its next gate:')} <b>${E(nxt.cu)}</b> — ${E(w.short)}, ${E(s.n)}.</div>
+      <button class="go" data-deal="${Er(nxt.id)}">${E('Open that deal')} →</button></div>`); }
   else cards.push(`<div class="card"><div class="k">${E('Deals')}</div><h3>${E('No deals yet')}</h3>
       <div class="sm" style="margin-top:6px">${canRegisterDeal()?E('You are ready. Register your first opportunity and the Pre-Sales flow opens for it.'):E('Deal registration unlocks at Sales readiness.')}</div>
       <button class="go" data-act="${canRegisterDeal()?'register':'lead'}">${canRegisterDeal()?E('Register a deal'):E('Submit a lead instead')} →</button></div>`);
   const c=complianceStatus();
-  cards.push(`<div class="card"><div class="k">${E('Program standing')}</div><h3>${Er(c.tier)}</h3>
-    <div class="big" style="color:${c.ok?'var(--ok)':'var(--warn)'}">${c.ok?E('Good'):E('Action')}</div>
-    <div class="sm">${c.rows.filter(r=>!r.ok).length?c.rows.filter(r=>!r.ok).map(r=>E(r.l)).join(', ')+' '+E('below requirement'):E('All requirements met')}${c.next&&!c.nextGap.length?' · '+E('eligible for')+' '+Er(c.next):''}</div>
+  const short=c.rows.filter(r=>!r.ok);
+  cards.push(`<div class="card"><div class="k">${E('Program standing')}</div><h3>${Er(c.tier)} ${E('partner')}</h3>
+    <div class="ppchips" style="margin:8px 0 10px"><span class="pill ${c.ok?'ok':'warn'}">${c.ok?E('In good standing'):E('Needs attention')}</span></div>
+    <div class="sm">${short.length
+      ? short.map(r=>r.bool?E(r.l)+' — '+E('not done'):E(r.l)+': '+r.have+' '+E('of')+' '+r.need+' '+E('needed')).join('. ')+'.'
+      : E('You meet every requirement for this tier.')}${c.next&&!c.nextGap.length?' '+E('You already qualify for')+' '+Er(c.next)+' — '+E('ask your PRM for a review.'):''}</div>
     <button class="go" data-nav="${ROLE==='padmin'?'company':'certs'}">${E('Details')} →</button></div>`);
   return `<div class="sh" style="margin-top:6px"><h2>${E('Where you are')}</h2></div><div class="wya">${cards.join('')}</div>`;
 }
@@ -5486,7 +5494,9 @@ function setRole(r){
   document.querySelector('.regbtn').style.display = def.canRegister ? '' : 'none';
   document.querySelector('.connbtn').style.display = '';
   const org=document.getElementById('orgchip'); org.style.display='';
-  document.getElementById('orgav').textContent=u.ini||'';
+  const av=document.getElementById('orgav'); const lg=(def.side==='partner')?PartnerProfile.get().logo:'';
+  if(lg){ av.innerHTML=`<img src="${Er(lg)}" alt="" style="width:100%;height:100%;object-fit:contain;border-radius:inherit;background:#fff">`; }
+  else av.textContent=u.ini||'';
   document.getElementById('orgnm').textContent=u.name||'';
   document.getElementById('s-tier').textContent=T(def.n);
   document.getElementById('fab').style.display='';
@@ -5816,7 +5826,7 @@ function mappingPanel(){
     .concat(PRODUCTS.map(k=>[k,k,all.filter(x=>x.prods.indexOf(k)>=0).length]));
 
   return `<div class="sh" style="margin-top:30px"><h2>${E('Product mapping')}</h2>
-      <span class="hint">${E('Which products each asset serves. An asset can serve several — the highlighted one is primary and decides where it sorts first.')}</span></div>
+      <span class="hint">${E('Which products each asset serves. Click a cell to toggle. "All" means every product — picking a specific product switches it off.')}</span></div>
     ${unmapped?`<div class="auto" style="margin:0 0 12px"><span class="z">${sv(I.zap,12,0).replace('fill="none"','fill="currentColor" stroke="none"')}</span>
       <span><b>${unmapped} ${E('assets have no product mapping.')}</b> ${E('They will not appear under any product filter a partner uses. Map them, or mark them as applying to all products.')}</span></div>`:''}
     <div class="pmbar">
@@ -5840,7 +5850,7 @@ function mappingPanel(){
         <td><button class="pmck ${sel?'on':''}" data-msel="${Er(x.n)}" aria-label="${Er(T('Select'))}">✓</button></td>
         <td><span class="pmn">${E(x.n)}<i>${E(x.g)} · ${E(x.m)}</i></span></td>
         ${PRODUCTS.map(k=>{const on=x.prods.indexOf(k)>=0;
-          return `<td class="pc"><button class="pmck ${on?(k===x.primary?'pri':'on'):''}" ${x.cross?'disabled':''}
+          return `<td class="pc"><button class="pmck ${on?(k===x.primary?'pri':'on'):''}"
             data-pmn="${Er(x.n)}" data-pmc="${Er(k)}"
             title="${Er(PRODUCT_NAME[k]||k)}${on&&k===x.primary?' · '+Er(T('primary')):''}"
             aria-pressed="${on?'true':'false'}">✓</button></td>`}).join('')}
