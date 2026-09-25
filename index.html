@@ -32,7 +32,7 @@
 }
 :root[data-t="dark"]{
   color-scheme: dark;
-  --teal:#5AA0BC; --coral:#E9906E; --sky:#79BEEB; --gold:#EBCE93;
+  --teal:#5AA0BC; --coral:#E9906E; --sky:#79BEEB; --gold:#EBCE93; --navy:#8AA6CB;
   --acc:#5AA0BC; --acc-2:#E9906E;
   --ink:#EDF2F7; --ink-2:#9BAABA; --ink-3:#6E7F90;
   --page:#080C12; --surface:#111A25; --raise:#16212E; --sunk:#0D151E;
@@ -936,12 +936,14 @@ a.pline:hover span{color:var(--acc);text-decoration:underline}
 
 /* ── admin flow map ── */
 .fmwrap{overflow-x:auto}
-.fmgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;min-width:960px}
+.fmgrid{display:grid;grid-template-columns:repeat(5,minmax(210px,1fr));gap:12px;min-width:1120px}
 .fmcol{display:flex;flex-direction:column;gap:7px}
 .fmh{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;padding:2px 2px 5px}
 .fmc{background:var(--surface);border:1px solid var(--line-2);border-radius:10px;padding:11px 13px;text-align:left;
   box-shadow:var(--sh-1);transition:.14s;width:100%}
 .fmc:hover{border-color:var(--acc);box-shadow:var(--sh-2)}
+.fmc.empty{border-style:dashed;opacity:.72}
+.fmc.empty .fmmeta b{color:var(--warn)}
 .fmc.thin{background:var(--warn-bg);border-color:rgba(229,193,121,.5)}
 .fmc.noreq{border-style:dashed}
 .fmn{display:block;font-size:12.5px;font-weight:700;line-height:1.3}
@@ -1142,7 +1144,7 @@ textarea.whtx::placeholder{color:var(--ink-3);font-style:italic}
     <button class="ib" id="themebtn" title="Switch theme" aria-label="Switch theme"></button>
     <button class="ib sm-hide" title="Search" aria-label="Search"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg></button>
     <button class="ib sm-hide" title="Notifications" aria-label="Notifications"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><i class="dt"></i></button>
-    <div class="rolewrap"><button class="org" id="orgchip" aria-haspopup="true" aria-expanded="false"><span class="av" id="orgav">AC</span><span><span class="nm" id="orgnm">ABC Consulting</span><span class="tt" id="s-tier">Gold Reseller</span></span><svg class="orgcv" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="rolemenu" id="rolemenu"></div></div>
+    <div class="rolewrap"><button class="org" id="orgchip" aria-haspopup="true" aria-expanded="false"><span class="av" id="orgav">AC</span><span><span class="nm" id="orgnm">ABC Consulting</span><span class="tt" id="s-tier">Premier Reseller</span></span><svg class="orgcv" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="rolemenu" id="rolemenu"></div></div>
   </div>
 </header>
 
@@ -1276,6 +1278,10 @@ textarea.whtx::placeholder{color:var(--ink-3);font-style:italic}
   display:inline-flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;
   color:var(--ink-2);margin-right:9px;overflow:hidden;vertical-align:middle;flex:none}
 .pdav img{width:100%;height:100%;object-fit:contain}
+.pill{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.04em;border-radius:999px;padding:3px 9px;background:var(--sunk);color:var(--ink-2);white-space:nowrap;line-height:1.3;vertical-align:middle}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}
+.pill.warn{background:var(--warn-bg);color:var(--warn)}
+.pill.bad{background:var(--hot-bg);color:var(--hot)}
 .pill.tier{background:var(--warn-bg);color:var(--gold)}
 .pill.neutral{background:var(--sunk);color:var(--ink-2)}
 .pdmeter{width:56px;height:5px;border-radius:999px;background:var(--sunk);display:inline-block;
@@ -1323,13 +1329,23 @@ textarea.whtx::placeholder{color:var(--ink-3);font-style:italic}
 .obprog{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:12px}
 .obmeter{flex:1;min-width:160px;height:9px;border-radius:999px;background:rgba(255,255,255,.22);overflow:hidden}
 .obmeter i{display:block;height:100%;background:#fff;border-radius:999px;transition:.3s}
-.wya{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:14px}
-.wya .card{padding:17px 19px}
-.wya h3{margin:0 0 4px;font-size:14px;font-weight:700}
-.wya .k{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
-.wya .big{font-size:26px;font-weight:800;line-height:1;margin:6px 0 4px}
-.wya .sm{font-size:12.5px;color:var(--ink-2);line-height:1.5}
-.wya .go{display:inline-block;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--acc);cursor:pointer;background:none;border:0;padding:0;font-family:inherit}
+/* where-you-are tiles: same grammar as the gauge tiles (.g) */
+.wya{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:12px}
+.wy{background:var(--surface);border:1px solid var(--line-2);border-radius:11px;padding:13px 15px 12px;box-shadow:var(--sh-1);display:flex;flex-direction:column;min-height:148px}
+.wy .gl{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.wy .gv{font-size:22px;font-weight:800;letter-spacing:-.035em;line-height:1.15;margin-top:4px;font-variant-numeric:tabular-nums}
+.wy .gv i{font-style:normal;font-size:12px;font-weight:600;color:var(--ink-2);letter-spacing:0;margin-left:5px}
+.wy .gt{height:3px;border-radius:2px;background:var(--line);margin-top:9px;position:relative;overflow:hidden;display:flex}
+.wy .gt i{display:block;height:100%}
+.wy .lg{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px;font-size:11px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.wy .lg b{font-weight:700;color:var(--ink)}
+.wy .lg s{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:5px;vertical-align:1px;text-decoration:none}
+.wy .gs{font-size:11.5px;color:var(--ink-2);margin-top:8px;line-height:1.5;flex:1}
+.wy .gs b{font-weight:650;color:var(--ink)}
+.wy .go{align-self:flex-start;margin-top:9px;font-size:12px;font-weight:700;color:var(--acc);cursor:pointer;background:none;border:0;padding:0;font-family:inherit}
+.wy .go:hover{text-decoration:underline}
+.wy .st{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--ink-2);margin-top:9px}
+.wy .st s{width:7px;height:7px;border-radius:50%;text-decoration:none}
 </style>
 <style>
 .demobar{background:var(--warn-bg);color:var(--ink-2);font-size:12px;padding:7px 16px;text-align:center;border-bottom:1px solid var(--line)}
@@ -1339,6 +1355,21 @@ textarea.whtx::placeholder{color:var(--ink-3);font-style:italic}
 .leadrow .ln{font-weight:650;font-size:13.5px}
 .leadrow .ln i{display:block;font-style:normal;font-weight:400;font-size:12px;color:var(--ink-3);margin-top:2px}
 .leadrow .la{display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.cmx{border-collapse:collapse;width:100%;min-width:760px;font-size:12.5px}
+.cmx th{text-align:left;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);padding:0 10px 9px;border-bottom:1px solid var(--line)}
+.cmx th.cmt{text-align:center;color:var(--ink-2)}
+.cmx th.cmt span{display:block;font-size:12px;letter-spacing:0;text-transform:none;color:var(--ink)}
+.cmx th.cmt i{font-style:normal;font-size:11px;font-weight:600;color:var(--ink-3)}
+.cmx th.cmt.cur,.cmx td.cmc.cur{background:var(--wash)}
+.cmx th.cmt.cur span{color:var(--acc)}
+.cmx td{padding:10px;border-bottom:1px solid var(--line-2);vertical-align:middle}
+.cmx td.cml{color:var(--ink);font-weight:500;width:34%}
+.cmx td.cml i{display:block;font-style:normal;font-size:11px;color:var(--ink-3);font-weight:400;margin-top:2px}
+.cmx td.cmc{text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.cmx td.cmc.met{color:var(--ok);font-weight:600}
+.cmx td.cmc.short{color:var(--warn);font-weight:600}
+.cmx td.cmc.na{color:var(--ink-3)}
+.cmx tr.cmcat td{padding:14px 10px 6px;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);border-bottom:0}
 .cmpl{display:grid;gap:8px}
 .cmpr{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line-2);font-size:12.5px}
 .cmpr:last-child{border-bottom:0}
@@ -1350,12 +1381,14 @@ textarea.whtx::placeholder{color:var(--ink-3);font-style:italic}
 const A=JSON.parse(document.getElementById('assets').textContent);
 document.getElementById('lg').src=A.logoWhite;
 
-const PARTNER={name:'ABC Consulting',tier:'Gold Reseller',
+const PARTNER={name:'ABC Consulting',tier:'Premier Reseller',
   prm:{name:'Helio Samora',title:'Partner Relationship Manager',email:'heliosamora@aptean.com',
        phone:'403.111.1111',tz:'Mountain Time · Calgary',hours:'Mon–Fri, 8:00 AM–5:00 PM MT'},
   products:[{c:'EAM',n:'Enterprise Asset Management',on:1},{c:'OEE',n:'Process Manufacturing OEE',on:1},
     {c:'ERP',n:'Aptean Food & Beverage ERP',on:0},{c:'PLM',n:'Aptean PLM',on:0},
-    {c:'Logility',n:'Logility Supply Chain Planning',on:0},{c:'Paragon',n:'Aptean Paragon Routing & Scheduling',on:0}],
+    {c:'Logility',n:'Logility Supply Chain Planning',on:0},{c:'Paragon',n:'Aptean Paragon Routing & Scheduling',on:0},
+    {c:'TMS',n:'Transport Management',on:0},{c:'EDI',n:'Aptean EDI',on:0},{c:'CRM',n:'Aptean CRM',on:0},
+    {c:'Pay',n:'Aptean Pay',on:0},{c:'BI',n:'Aptean Business Intelligence',on:0}],
   regions:[{c:'North America',on:1},{c:'LATAM',on:1},{c:'EMEA',on:0},{c:'ANZ',on:0}]};
 
 const GAUGES=[
@@ -1378,13 +1411,13 @@ const DEMOS=[{n:'DEMO-OEE-02',x:'6 days',soon:1},{n:'DEMO-EAM-07',x:'19 days'},
 const NEWS=[
  {t:'Program',c:'var(--coral)',d:'Aug 19, 2026',big:1,
   h:'FY27 partner tiers published — EAM margin band moves to 31%',
-  b:'Gold reseller base margin on EAM new-name license rises from 28% to 31%, effective October 1. Renewal margin is unchanged at 18%. Your FY27 price book is already live in the pricing stage of every open deal.'},
+  b:'Premier reseller base margin on EAM new-name license rises from 28% to 31%, effective October 1. Renewal margin is unchanged at 18%. Your FY27 price book is already live in the pricing stage of every open deal.'},
  {t:'Release',c:'var(--teal)',d:'Aug 14, 2026',
   h:'Aptean OEE 26.2 is generally available',
   b:'Plan attainment by line, changeover benchmarking and the schedule adherence pack. Demo instances auto-upgrade August 28.'},
  {t:'Enablement',c:'var(--sky)',d:'Aug 11, 2026',
   h:'EAM Solution Consultant — September cohort open',
-  b:'Four half-day virtual sessions plus assessment. Two seats are included in your Gold entitlement.'}];
+  b:'Four half-day virtual sessions plus assessment. Two seats are included in your Premier entitlement.'}];
 
 const R=(t,n,m)=>({t,n,m});
 
@@ -1429,9 +1462,9 @@ const WS=[
     ck:['Module and user counts confirmed','Integration list agreed','Services estimate produced','Architect review if flagged'],
     as:[R('tool','Solution configurator','Guided · 15 min'),R('tool','SOW builder','Generates your paper'),R('doc','EAM module matrix FY27','PDF'),R('tpl','Services estimate workbook','Template')]},
    {n:'Pricing & quote',dur:'2–4 days',gate:'Quote issued inside your margin band',d:'Build the quote against your price book and margin band. Outside the band routes for approval automatically.',
-    a:'Discounts inside your Gold band auto-approve and quote in seconds. Outside it, the approval chain is built and SLA-tracked for you.',
-    ck:['FY27 Gold price book applied','Margin band checked','Approval obtained if required','Quote issued'],
-    as:[R('tool','Partner price book — FY27 Gold','Live pricing'),R('tool','Deal & margin calculator','Calculator'),R('doc','Discount approval matrix','PDF · 1 page'),R('video','How partner margin actually works','Video · 9:31')]},
+    a:'Discounts inside your Premier band auto-approve and quote in seconds. Outside it, the approval chain is built and SLA-tracked for you.',
+    ck:['FY27 Premier price book applied','Margin band checked','Approval obtained if required','Quote issued'],
+    as:[R('tool','Partner price book — FY27 Premier','Live pricing'),R('tool','Deal & margin calculator','Calculator'),R('doc','Discount approval matrix','PDF · 1 page'),R('video','How partner margin actually works','Video · 9:31')]},
    {n:'Proposal',dur:'1 week',gate:'Proposal presented to the buying committee',d:'Assemble the proposal from everything already captured, and put it in front of the committee.',
     a:'The proposal generates from your quote, ROI model and scoping output as an editable branded document.',
     ck:['Proposal generated and edited','Security & compliance pack supplied','Committee presentation held'],
@@ -1499,7 +1532,7 @@ const WS=[
     as:[R('tool','Agent opportunity scan','Auto-generated'),R('doc','Agent use-case library — food & beverage','PDF · 24 patterns'),R('tpl','Use-case one-pager','Template'),R('video','Selling agents into a live account','Video · 12:15')]},
    {n:'Expansion proposal',dur:'1–2 weeks',gate:'Proposal accepted in principle by the sponsor',
     d:'Package the whitespace and the agent use cases into one conversation, not five.',
-    a:'The proposal assembles from the value review and the whitespace map, priced against your current Gold book.',
+    a:'The proposal assembles from the value review and the whitespace map, priced against your current Premier book.',
     ck:['Proposal built','Presented to sponsor','Budget path confirmed'],
     as:[R('tpl','Expansion proposal builder','Generates from stages 2–4'),R('tool','Deal & margin calculator','Calculator')]},
    {n:'Register the expansion',dur:'1 day',gate:'New opportunity registered and protected',
@@ -1655,10 +1688,10 @@ let NOTES=[
 /* ══════════ PRM PORTFOLIO — revenue first ══════════ */
 const PORTFOLIO=[
  {n:'Meridian Industrial',t:'Platinum',rg:'North America',acv:2.20,q:0.62,logos:6,pipe:5.2,cov:3.4,att:104,certs:[14,14],tr:1,touch:5,flag:'bright'},
- {n:'ABC Consulting',t:'Gold',rg:'NA · LATAM',acv:1.55,q:0.41,logos:4,pipe:3.6,cov:3.1,att:86,certs:[9,12],tr:1,touch:2,flag:'bright'},
- {n:'Pinnacle F&B',t:'Gold',rg:'North America',acv:1.48,q:0.38,logos:4,pipe:3.4,cov:2.9,att:88,certs:[10,12],tr:1,touch:7,flag:'bright'},
- {n:'Northline Tech',t:'Gold',rg:'North America',acv:1.05,q:0.22,logos:3,pipe:2.8,cov:2.4,att:72,certs:[8,12],tr:0,touch:9,flag:'steady'},
- {n:'Brasil Fábrica',t:'Gold',rg:'LATAM',acv:0.94,q:0.28,logos:3,pipe:2.1,cov:2.6,att:93,certs:[7,10],tr:1,touch:4,flag:'bright'},
+ {n:'ABC Consulting',t:'Premier',rg:'NA · LATAM',acv:1.55,q:0.41,logos:4,pipe:3.6,cov:3.1,att:86,certs:[9,12],tr:1,touch:2,flag:'bright'},
+ {n:'Pinnacle F&B',t:'Premier',rg:'North America',acv:1.48,q:0.38,logos:4,pipe:3.4,cov:2.9,att:88,certs:[10,12],tr:1,touch:7,flag:'bright'},
+ {n:'Northline Tech',t:'Premier',rg:'North America',acv:1.05,q:0.22,logos:3,pipe:2.8,cov:2.4,att:72,certs:[8,12],tr:0,touch:9,flag:'steady'},
+ {n:'Brasil Fábrica',t:'Premier',rg:'LATAM',acv:0.94,q:0.28,logos:3,pipe:2.1,cov:2.6,att:93,certs:[7,10],tr:1,touch:4,flag:'bright'},
  {n:'Andes Manufactura',t:'Silver',rg:'LATAM',acv:0.52,q:0.11,logos:2,pipe:1.3,cov:2.1,att:61,certs:[5,8],tr:0,touch:15,flag:'steady'},
  {n:'Vantage Ops',t:'Silver',rg:'North America',acv:0.38,q:0.05,logos:1,pipe:1.1,cov:1.6,att:55,certs:[4,8],tr:-1,touch:21,flag:'hot'},
  {n:'Cordillera Sistemas',t:'Silver',rg:'LATAM',acv:0.24,q:0.03,logos:0,pipe:0.9,cov:1.3,att:41,certs:[3,8],tr:-1,touch:34,flag:'hot'},
@@ -1922,7 +1955,7 @@ const L={};
 L.es={
 /* chrome */
 "Partner Hub":"Portal de Partners","Home":"Inicio","Deals":"Oportunidades","Certifications":"Certificaciones",
-"Library":"Biblioteca","Support":"Soporte","Register a deal":"Registrar oportunidad","Gold Reseller":"Reseller Gold",
+"Library":"Biblioteca","Support":"Soporte","Register a deal":"Registrar oportunidad","Premier Reseller":"Reseller Gold",
 "Value-added reseller":"Reseller de valor agregado","Aptean Global Partner Program":"Programa Global de Partners de Aptean",
 "Active deals":"Oportunidades activas","In flight":"En curso","Live projects":"Proyectos activos","manage":"gestionar",
 "Latest":"Más reciente","Ready for What's Next, Now®":"Listos para lo que sigue, ahora®",
@@ -2020,10 +2053,10 @@ L.es={
 "Solution configurator":"Configurador de solución","EAM module matrix FY27":"Matriz de módulos EAM FY27","Services estimate workbook":"Libro de estimación de servicios",
 "Pricing & quote":"Precios y cotización",
 "Build the quote against your price book and margin band. Outside the band routes for approval automatically.":"Arma la cotización con tu lista de precios y tu banda de margen. Fuera de la banda se enruta a aprobación automáticamente.",
-"Discounts inside your Gold band auto-approve and quote in seconds. Outside it, the approval chain is built and SLA-tracked for you.":"Los descuentos dentro de tu banda Gold se autoaprueban y cotizan en segundos. Fuera de ella, la cadena de aprobación se arma y se monitorea contra SLA.",
-"FY27 Gold price book applied":"Lista de precios FY27 Gold aplicada","Margin band checked":"Banda de margen verificada",
+"Discounts inside your Premier band auto-approve and quote in seconds. Outside it, the approval chain is built and SLA-tracked for you.":"Los descuentos dentro de tu banda Gold se autoaprueban y cotizan en segundos. Fuera de ella, la cadena de aprobación se arma y se monitorea contra SLA.",
+"FY27 Premier price book applied":"Lista de precios FY27 Gold aplicada","Margin band checked":"Banda de margen verificada",
 "Approval obtained if required":"Aprobación obtenida si aplica","Quote issued":"Cotización emitida",
-"Partner price book — FY27 Gold":"Lista de precios de partner — FY27 Gold","Deal & margin calculator":"Calculadora de negocio y margen",
+"Partner price book — FY27 Premier":"Lista de precios de partner — FY27 Gold","Deal & margin calculator":"Calculadora de negocio y margen",
 "Discount approval matrix":"Matriz de aprobación de descuentos","How partner margin actually works":"Cómo funciona realmente el margen de partner",
 "Proposal":"Propuesta",
 "Assemble the proposal from everything already captured, and put it in front of the committee.":"Arma la propuesta con todo lo ya capturado y preséntala al comité.",
@@ -2084,7 +2117,7 @@ Object.assign(L.es,{
 "Aptean \u00b7 NA and LATAM":"Aptean \u00b7 NA y LATAM",
 "Aptean \u00b7 Program leadership":"Aptean \u00b7 Direcci\u00f3n del programa",
 "Aptean \u00b7 Enablement & content ops":"Aptean \u00b7 Habilitaci\u00f3n y contenido",
-"ABC Consulting \u00b7 Gold Reseller":"ABC Consulting \u00b7 Reseller Gold",
+"ABC Consulting \u00b7 Premier Reseller":"ABC Consulting \u00b7 Reseller Gold",
 "All products":"Todos los productos",
 "Not authorized \u2014 reference only":"No autorizado \u2014 solo referencia",
 "plus":"m\u00e1s",
@@ -2852,11 +2885,11 @@ Object.assign(L.es,{
 "3 × Implementation Consultant":"3 × Consultor de Implementación","Unlocks Food & Beverage ERP authorization":"Desbloquea la autorización de Food & Beverage ERP",
 "2 × OEE Solution Consultant":"2 × Consultor de Soluciones OEE","Unlocks EMEA region authorization for OEE":"Desbloquea la autorización de la región EMEA para OEE",
 "FY27 partner tiers published — EAM margin band moves to 31%":"Publicados los niveles de partner FY27 — la banda de margen de EAM sube a 31%",
-"Gold reseller base margin on EAM new-name license rises from 28% to 31%, effective October 1. Renewal margin is unchanged at 18%. Your FY27 price book is already live in the pricing stage of every open deal.":"El margen base Gold sobre licencia nueva de EAM sube de 28% a 31%, con vigencia 1 de octubre. El margen de renovación se mantiene en 18%. Tu lista de precios FY27 ya está activa en la etapa de precios de cada oportunidad abierta.",
+"Premier reseller base margin on EAM new-name license rises from 28% to 31%, effective October 1. Renewal margin is unchanged at 18%. Your FY27 price book is already live in the pricing stage of every open deal.":"El margen base Gold sobre licencia nueva de EAM sube de 28% a 31%, con vigencia 1 de octubre. El margen de renovación se mantiene en 18%. Tu lista de precios FY27 ya está activa en la etapa de precios de cada oportunidad abierta.",
 "Aptean OEE 26.2 is generally available":"Aptean OEE 26.2 ya está disponible",
 "Plan attainment by line, changeover benchmarking and the schedule adherence pack. Demo instances auto-upgrade August 28.":"Cumplimiento del plan por línea, benchmarking de cambios de formato y el paquete de adherencia al programa. Las instancias demo se actualizan el 28 de agosto.",
 "EAM Solution Consultant — September cohort open":"Consultor de Soluciones EAM — cohorte de septiembre abierta",
-"Four half-day virtual sessions plus assessment. Two seats are included in your Gold entitlement.":"Cuatro sesiones virtuales de medio día más evaluación. Tu nivel Gold incluye dos lugares.",
+"Four half-day virtual sessions plus assessment. Two seats are included in your Premier entitlement.":"Cuatro sesiones virtuales de medio día más evaluación. Tu nivel Gold incluye dos lugares.",
 "Program":"Programa","Release":"Versión","Enablement":"Habilitación",
 "Guided selling assistant":"Asistente de venta guiada","Watching:":"Observando:",
 "Ask about pricing, demos, deal reg…":"Pregunta sobre precios, demos, registro…",
@@ -3063,7 +3096,7 @@ const CHROME={
  "Register a deal":["Registrar negócio","Enregistrer une affaire","Deal registrieren"],
  "+ Register a deal":["+ Registrar negócio","+ Enregistrer une affaire","+ Deal registrieren"],
  "Register a new deal":["Registrar um novo negócio","Enregistrer une nouvelle affaire","Neuen Deal registrieren"],
- "Gold Reseller":["Revendedor Gold","Revendeur Gold","Gold-Reseller"],
+ "Premier Reseller":["Revendedor Gold","Revendeur Gold","Gold-Reseller"],
  "Value-added reseller":["Revendedor de valor agregado","Revendeur à valeur ajoutée","Value-Added-Reseller"],
  "Aptean Global Partner Program":["Programa Global de Parceiros Aptean","Programme Partenaires Mondial Aptean","Aptean Globales Partnerprogramm"],
  "Active deals":["Negócios ativos","Affaires actives","Aktive Deals"],"In flight":["Em andamento","En cours","In Bearbeitung"],
@@ -3162,7 +3195,7 @@ function setLang(c){
   const m=LANGS.find(x=>x.c===c);
   document.getElementById('langf').textContent=m.f;
   const set=(id,txt)=>{const el=document.getElementById(id);if(el)el.textContent=txt;};
-  set('s-ph',T('Partner Hub')); set('s-tier',T('Gold Reseller')); set('s-watch',T('Watching:'));
+  set('s-ph',T('Partner Hub')); set('s-tier',T('Premier Reseller')); set('s-watch',T('Watching:'));
   set('s-ais',T('Guided selling assistant'));
   const rl=document.querySelector('.regbtn .rl'); if(rl)rl.textContent=T('Register a deal');
   const ai=document.getElementById('aiin'); if(ai)ai.placeholder=T('Ask about pricing, demos, deal reg…');
@@ -3220,12 +3253,12 @@ function navItems(){
   if(typeof onboardComplete==='function' && !onboardComplete()) items.push({id:'onboard',l:'Get started'});
   items.push({id:'deals',l:'Deals'});
   if(FLAGS.agents||FLAGS.demo) items.push({id:'agents',l:'Agents'});
-  items.push({id:'certs',l:'Certifications'},{id:'library',l:'Library'});
+  items.push({id:'certs',l:'Certifications'},{id:'program',l:'Program'},{id:'library',l:'Library'});
   if(ROLE==='padmin') items.push({id:'company',l:'Company'});
   return items;
 }
 /* Static labels for lookups; the rendered nav is navItems() at runtime. */
-const NAVI=[{id:'home',l:'Home'},{id:'onboard',l:'Get started'},{id:'deals',l:'Deals'},{id:'agents',l:'Agents'},{id:'certs',l:'Certifications'},{id:'library',l:'Library'},{id:'company',l:'Company'}];
+const NAVI=[{id:'home',l:'Home'},{id:'onboard',l:'Get started'},{id:'deals',l:'Deals'},{id:'agents',l:'Agents'},{id:'certs',l:'Certifications'},{id:'program',l:'Program'},{id:'library',l:'Library'},{id:'company',l:'Company'}];
 const renderNav=()=>document.getElementById('nav').innerHTML=
   navItems().map(n=>`<button data-nav="${n.id}" class="${S.view===n.id||(S.view==='deal'&&n.id==='deals')?'on':''}" ${S.view===n.id?'aria-current="page"':''}>${E(n.l)}</button>`).join('');
 
@@ -3317,6 +3350,7 @@ function renderHome(){
         <div class="qa">
           <button class="qb" data-act="register">${sv(I.plus,15,2.4)}${E('Register a new deal')}</button>
           <button class="qb" data-act="lead">${sv(I.life,15,2)}${E('Submit a lead')}</button>
+          <button class="qb" data-act="coop">${sv(I.tool,15,2)}${E('Request co-op funds')}</button>
           <button class="qb" data-act="demo">${sv(I.cube,15,2)}${E('Provision a demo instance')}</button>
           <button class="qb" data-nav="certs">${sv(I.cap,15,2)}${E('Enroll for certification')}</button>
           <button class="qb" data-connect="1">${sv(I.life,15,2)}${E('Raise a support case')}</button>
@@ -3380,10 +3414,10 @@ function renderDeal(id){
   const {s:cur,i:ci}=activeStage(d);
   const head=`<div class="crumb"><button data-nav="home">Home</button>${sv(I.chev,11,2.4)}<button data-nav="deals">Deals</button>${sv(I.chev,11,2.4)}<span>${E(d.cu)}</span></div>
     <section class="dhead"><div class="bg"></div><div class="in">
-      <div><div class="kick" style="color:rgba(255,255,255,.7)">${Er(d.id)} · ${E('registered')} ${E(d.reg)}</div>
+      <div><div class="kick" style="color:rgba(255,255,255,.7)">${Er(d.id)} · ${E('registered')} ${E(d.reg)}${d.rs==='declined'&&d.rsReason?` · ${Er(d.rsReason)}`:''}</div>
         <h1 style="margin-top:4px">${Er(d.cu)}${d.sub?` <span class="hsub">${Er(d.sub)}</span>`:''}</h1>
         <div class="meta">${d.pr.map(p=>`<span class="ep on">${p}</span>`).join('')}
-          <span class="ep on">${E(d.rg)}</span><span class="ep on">${E(d.own)}</span>
+          <span class="ep on">${E(d.rg)}</span><span class="ep on">${E(d.own)}</span>${d.outcome!=='lost'?`<button class="mg" data-lost="${Er(d.id)}">${E('close as lost')}</button>`:''}${regBadge(d)?`<span class="ep ${d.rs==='pending'?'gold':d.rs==='declined'||d.outcome==='lost'?'gold':'on'}">${regBadge(d).replace(/<[^>]+>/g,'')}</span>`:''}
           ${d.prot?`<span class="ep gold">${d.prot} ${E('days protection')}</span>`:`<span class="ep gold">${E('Closed won')}</span>`}
           ${d.type&&d.type!=='sw'?`<span class="ep gold">${E(TYPE_L[d.type])}</span>`:''}
           ${d.parent?`<span class="ep on">${E('Expansion of')} ${Er((DEALS.find(x=>x.id===d.parent)||{}).cu||'')}</span>`:''}
@@ -3434,9 +3468,12 @@ function renderDeal(id){
 
 /* ══════════ LIBRARY ══════════ */
 /* PRODUCT CATALOGUE - reference data. Real app: a `products` table. */
-const PRODUCTS=['EAM','OEE','Logility','Paragon','PLM','ERP'];
-const PRODUCT_NAME={EAM:'Aptean EAM',OEE:'Aptean OEE',Logility:'Logility',
-  Paragon:'Aptean Paragon',PLM:'Aptean PLM',ERP:'Aptean ERP'};
+/* Mirrors the collections in Aptean's current asset library. Confirm with
+   product marketing before this becomes reference data. */
+const PRODUCTS=['EAM','OEE','Paragon','PLM','Logility','TMS','EDI','CRM','Pay','BI','ERP'];
+const PRODUCT_NAME={EAM:'Aptean EAM',OEE:'Aptean OEE',Paragon:'Aptean Paragon',PLM:'Aptean PLM',
+  Logility:'Logility',TMS:'Transport Management',EDI:'Aptean EDI',CRM:'Aptean CRM',
+  Pay:'Aptean Pay',BI:'Aptean Business Intelligence',ERP:'Aptean ERP'};
 
 /* ASSET -> PRODUCT MAPPING (many-to-many)
    An asset serves one OR MANY products. Target schema:
@@ -3457,6 +3494,9 @@ const PROD_PAT=[['EAM',/\beam\b|maximo|fiix|asset management/],
   ['Logility',/logility|supply chain|demand plan|s&op|network design/],
   ['Paragon',/paragon|routing|route optim|fleet|multi-depot/],
   ['PLM',/\bplm\b|lifecycle|formulation|spec management|label compliance/],
+  ['TMS',/\btms\b|transport management|freight/],
+  ['EDI',/\bedi\b/],['CRM',/\bcrm\b/],['Pay',/aptean pay|payments?\b/],
+  ['BI',/\bbi\b|business intelligence|dashboards? /],
   ['ERP',/(?<!beyond )\berp\b|food & beverage|process manufactur/]];
 /* Program-wide rather than product-specific. */
 const CROSS_PAT=/partner program guide|rules of engagement|mdf claim|quarterly business review|tier requirements|brand kit|co-branded email|booth kit|partner onboarding|new partner onboarding|enablement calendar|certification enrollment|security whitepaper|api & integration reference/;
@@ -3616,17 +3656,63 @@ function renderLibrary(){
 }
 
 /* ══════════ OTHER VIEWS ══════════ */
-function renderDeals(){
-  const rows=DEALS.map(d=>{const {w,s}=activeStage(d);
-    return `<button class="deal" data-deal="${d.id}" style="margin-bottom:9px">
-      <div class="d1"><span class="dn">${E(d.cu)} <span style="font-weight:500;color:var(--ink-3);font-size:11.5px">${d.id}</span></span><span class="dv num">${money(d.v)}</span></div>
+let DTAB='active';
+function dealCard(d){ const {w,s}=activeStage(d);
+  return `<button class="deal" data-deal="${d.id}" style="margin-bottom:9px">
+      <div class="d1"><span class="dn">${E(d.cu)} <span style="font-weight:500;color:var(--ink-3);font-size:11.5px">${d.id}</span></span>
+        <span style="display:flex;gap:6px;align-items:center">${regBadge(d)}<span class="dv">${money(d.v)}</span></span></div>
       <div class="d2">${d.pr.map(p=>`<span class="pc">${p}</span>`).join('')}<span class="pc gr">${E(d.rg)}</span>
         <span class="pc" style="background:${w.color};color:#fff">${E(w.name)}</span></div>
-      <div class="stg">${E('Stage')} ${Math.min(d.st[w.id]+1,SLEN(d,d.ph))} / ${SLEN(d,d.ph)} · <b>${E(s.n)}</b> — ${E('next:')} ${E(nextAction(d))}</div>
-      <div class="pr"><i style="width:${overall(d)}%;background:${w.color}"></i></div></button>`}).join('');
-  document.getElementById('view').innerHTML=`<div class="sh" style="margin-top:6px"><h2>${E('All deals')}</h2>
-    <button class="btn g" data-act="register" style="font-size:12.5px;padding:9px 16px">${sv(I.plus,14,2.6)} ${E('Register a deal')}</button></div>${rows}`+leadsSection()+footer();
+      ${d.outcome==='lost'?`<div class="stg">${E('Closed lost')}${d.lostReason?' · '+E(d.lostReason):''}</div>`
+        :`<div class="stg">${E('Stage')} ${Math.min(d.st[w.id]+1,SLEN(d,d.ph))} / ${SLEN(d,d.ph)} · <b>${E(s.n)}</b> — ${E('next:')} ${E(nextAction(d))}</div>
+      <div class="pr"><i style="width:${overall(d)}%;background:${w.color}"></i></div>`}</button>`; }
+function dealsCsv(rows){
+  const h=['id','customer','products','region','value_usd_k','phase','stage','registration','protected_until','outcome'];
+  const esc=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
+  const lines=rows.map(d=>{const {w,s}=activeStage(d);return [d.id,d.cu,d.pr.join('|'),d.rg,d.v,w.name,s.n,d.rs||'approved',d.protEnd?fmtDate(d.protEnd):'',d.outcome||'open'].map(esc).join(',');});
+  return 'data:text/csv;charset=utf-8,'+encodeURIComponent([h.join(',')].concat(lines).join('\n'));
 }
+function renderDeals(){
+  const active=DEALS.filter(d=>d.outcome!=='lost'&&d.rs!=='declined');
+  const closed=DEALS.filter(d=>d.outcome==='lost'||d.rs==='declined');
+  const inbound=LeadStore.inbound();
+  const tabs=`<div class="admtabs" style="margin-top:4px">${[['active','Active',active.length],['closed','Closed',closed.length],['leads','Leads',inbound.length+LeadStore.mine().filter(l=>l.status==='accepted').length]]
+    .map(([k,l,n])=>`<button class="admtab ${DTAB===k?'on':''}" data-dtab="${k}">${E(l)}${n?`<i>${n}</i>`:''}</button>`).join('')}</div>`;
+  let body='';
+  if(DTAB==='active') body=active.length?active.map(dealCard).join(''):`<div class="libempty">${E('No active deals. Register one, or accept a lead from Aptean.')}</div>`;
+  else if(DTAB==='closed') body=closed.length?closed.map(dealCard).join(''):`<div class="libempty">${E('Nothing closed yet.')}</div>`;
+  else body=`<div class="sh" style="margin-top:4px"><h2 style="font-size:15px">${E('From Aptean')}</h2></div>`+(inbound.length?`<p class="ppnote" style="margin:0 0 10px">${E('Leads Aptean has passed to you. Accept one and it becomes a registered deal with protection started; decline and it goes back to Aptean.')}</p>`
+      +inbound.map(l=>`<div class="leadrow"><span class="ln">${Er(l.company)} <span style="font-weight:500;color:var(--ink-3);font-size:11.5px">${Er(l.id)} · ${E('from')} ${Er(l.by)}</span>
+        <i>${Er(l.contact)} · ${Er(l.region)} · ${l.products.join(', ')} · ${E(l.source)} · ${Er(l.at)}</i><i style="color:var(--ink-2);margin-top:4px">${Er(l.notes)}</i></span>
+      <span class="la"><button class="btn g" data-ldacc="${Er(l.id)}" style="font-size:12px;padding:7px 13px">${E('Accept & register')}</button>
+        <button class="btn s" data-lddecl="${Er(l.id)}" style="font-size:12px;padding:7px 13px">${E('Decline')}</button></span></div>`).join('')
+      :`<div class="libempty">${E('No leads waiting from Aptean.')}</div>`)+leadsSection();
+  document.getElementById('view').innerHTML=`<div class="sh" style="margin-top:6px"><h2>${E('Deals')}</h2>
+    <span style="display:flex;gap:8px"><a class="btn s" href="${dealsCsv(DTAB==='closed'?closed:active)}" download="deals.csv" style="font-size:12.5px;padding:9px 14px">${E('Export CSV')}</a>
+    <button class="btn s" data-act="lead" style="font-size:12.5px;padding:9px 14px">${E('Submit a lead')}</button>
+    <button class="btn g" data-act="register" style="font-size:12.5px;padding:9px 16px">${sv(I.plus,14,2.6)} ${E('Register a deal')}</button></span></div>${tabs}${body}`+footer();
+}
+document.addEventListener('click',ev=>{
+  const t=ev.target.closest('[data-dtab],[data-ldacc],[data-lddecl],[data-lost],[data-lostgo]'); if(!t) return;
+  const d=t.dataset;
+  if(d.dtab!==undefined){ DTAB=d.dtab; renderDeals(); return; }
+  if(d.lddecl!==undefined){ LeadStore.decide(d.lddecl,'declined'); renderDeals(); return; }
+  if(d.ldacc!==undefined){ const l=LeadStore.all().find(x=>x.id===d.ldacc); if(!l) return;
+    /* Accepting an Aptean-sourced lead registers it immediately: Aptean already qualified it. */
+    const n=Math.max(1100,...DEALS.map(x=>+String(x.id).replace(/\D/g,'')||0))+1;
+    const deal={id:'D-'+n,cu:l.company,ct:l.contact,pr:l.products.length?l.products:[authorizedProducts()[0]||'EAM'],rg:l.region,v:120,close:'',ev:l.notes,
+      own:(Session.user()||{}).name||'You',reg:fmtDate(today()),prot:90,type:'sw',source:'Aptean lead '+l.id,
+      rs:'approved',regAt:today().toISOString(),protEnd:addDays(today(),90).toISOString(),outcome:'',
+      ph:0,st:{presales:0,sales:0,implementation:0,grow:0},part:0,pc:'drafting',pa:'none'};
+    DEALS.unshift(deal); DealStore.add(deal); LeadStore.decide(l.id,'registered'); DTAB='active'; go('deal',deal.id); return; }
+  if(d.lost!==undefined){ showDW(`<div class="dwh"><button class="x" data-x aria-label="Close">${sv('<path d="M6 6l12 12M18 6L6 18"/>',14,2.4)}</button>
+      <div class="k">${Er(d.lost)}</div><h2>${E('Close as lost')}</h2></div>
+    <div class="dwb"><div class="fld"><label>${E('Reason')}</label><select id="lostWhy">${['Chose a competitor','No decision','Budget withdrawn','Timing — revisit later','Went direct with Aptean','Other'].map(o=>`<option>${Er(T(o))}</option>`).join('')}</select></div>
+      <div class="fld"><label>${E('Notes for your PRM')}</label><textarea id="lostNote" style="min-height:72px"></textarea></div>
+      <div class="cta"><button class="btn g" data-lostgo="${Er(d.lost)}">${E('Close deal')}</button><button class="btn s" data-x>${E('Cancel')}</button></div></div>`); return; }
+  if(d.lostgo!==undefined){ const why=(document.getElementById('lostWhy')||{}).value||'';
+    DealStore.patch(d.lostgo,{outcome:'lost',lostReason:why,lostAt:today().toISOString()}); closeDW(); DTAB='closed'; go('deals'); return; }
+});
 function renderCerts(){
   document.getElementById('view').innerHTML=`<div class="sh" style="margin-top:6px"><h2>${E('Certification center')}</h2>
     <span class="hint">${E('Certifications gate what you can sell, discount and implement — each track maps to one workspace.')}</span></div>
@@ -3681,8 +3767,10 @@ function openStage(i){
       <div class="ds"><h4>${E('Checklist for')} ${Er(d.cu)}</h4>
         ${s.ck.map((c,j)=>`<button class="ck ${ckArr[j]?'y':''}" ${st==='active'?`data-ckt="${j}"`:'disabled'} style="width:100%;text-align:left;font:inherit;background:none;border:0;cursor:${st==='active'?'pointer':'default'}"><span class="bx">${ckArr[j]?sv(I.ck,11,3.5):''}</span><span>${E(c)}</span></button>`).join('')}
         ${st==='active'?`<p class="ppnote">${E('Ticks are saved as you go. Complete the stage when the gate is met.')}</p>`:''}</div>
-      <div class="ds"><h4>${E('Everything you need, attached to this stage')}</h4>
-        ${s.as.map(a=>`<button class="res" ${/RFx response agent/i.test(a.n)?'data-rfx="1"':/SOW builder/i.test(a.n)?'data-sow="1"':''}><span class="ic ${a.t}">${sv(I[a.t],16,2)}</span>
+      <div class="ds"><h4>${E('For this stage')}${d.pr&&d.pr.length?` <span style="font-weight:500;color:var(--ink-3)">· ${d.pr.join(', ')}</span>`:''}</h4>
+        ${(()=>{const mapped=stageMaterials(w.id,i,(d.pr&&d.pr.length)?d.pr:authorizedProducts());
+          const list=mapped.length?mapped.map(m=>({t:m.t,n:m.n,m:m.m})):s.as.filter(a=>{const pm=AssetMap.get(a.n);return matForAny(pm,(d.pr&&d.pr.length)?d.pr:authorizedProducts());});
+          return list;})().map(a=>`<button class="res" ${/RFx response agent/i.test(a.n)?'data-rfx="1"':/SOW builder/i.test(a.n)?'data-sow="1"':''}><span class="ic ${a.t}">${sv(I[a.t],16,2)}</span>
           <span class="tx"><span class="nm">${E(a.n)}</span><span class="mt">${E(a.m)}</span></span>
           <span class="go">${a.t==='video'?E('Watch'):a.t==='tool'?E('Open'):E('View')} →</span></button>`).join('')}</div>
       ${typeof stageNotes==='function'?stageNotes(d,w.id,i):''}
@@ -3780,13 +3868,13 @@ function openWizard(){
         <div class="cta"><button class="btn g" data-nav="onboard" data-x>${E('Continue onboarding')}</button>
           <button class="btn s" data-x>${E('Close')}</button></div></div>`);
     return; }
-  WZ={step:0,kind:'',cu:'',ct:'',pr:[],rg:'',v:'',close:'',ev:''};drawWizard();}
+  WZ={step:0,kind:'',cu:'',ct:'',pr:[],rg:'',v:'',close:'',ev:'',orderType:'',subv:'',details:'',next:'',nextDate:'',coop:false,more:false};drawWizard();}
 function drawWizard(){
   const b=[wizKind,wizCustomer,wizSolution,wizOpp,wizReview,wizDone][WZ.step]();
   const done=WZ.step===5;
   showDW(`<div class="dwh"><button class="x" data-x>${sv('<path d="M6 6l12 12M18 6L6 18"/>',14,2.4)}</button>
       <div class="k">${done?E('Registered'):E('Deal registration')+' · '+E('step')+' '+(WZ.step+1)+'/5'}</div>
-      <h2>${done?E('You’re protected for 90 days'):E('Register a deal')}</h2>
+      <h2>${done?E('Registration submitted'):E('Register a deal')}</h2>
       ${done?'':`<div class="stepper">${WSTEPS.map((s,i)=>`<i class="${i<=WZ.step?'on':''}"></i>`).join('')}</div>`}</div>
     <div class="dwb">${b}</div>`);
   DW.querySelectorAll('[data-wz]').forEach(el=>el.onclick=()=>{
@@ -3800,6 +3888,8 @@ function drawWizard(){
     const c=el.dataset.p; WZ.pr.includes(c)?WZ.pr=WZ.pr.filter(x=>x!==c):WZ.pr.push(c); drawWizard();});
   DW.querySelectorAll('[data-r]').forEach(el=>el.onclick=()=>{WZ.rg=el.dataset.r;drawWizard();});
   DW.querySelectorAll('[data-wk]').forEach(el=>el.onclick=()=>{WZ.kind=el.dataset.wk;drawWizard();});
+  DW.querySelectorAll('[data-wzmore]').forEach(el=>el.onclick=()=>{WZ.more=!WZ.more;drawWizard();});
+  DW.querySelectorAll('[data-wzcoop]').forEach(el=>el.onclick=()=>{WZ.coop=!WZ.coop;drawWizard();});
 }
 function wizValid(){
   if(WZ.step===0) return !!WZ.kind;
@@ -3842,18 +3932,29 @@ function wizOpp(){return `
   <div class="fld"><label>${E('Compelling event')}</label><textarea data-f="ev" rows="3" placeholder="Why now? Audit, expansion, contract expiry, incident…">${E(WZ.ev)}</textarea></div>
   <div class="auto" style="margin:0"><span class="z">${sv(I.zap,12,0).replace('fill="none"','fill="currentColor" stroke="none"')}</span>
     <span><b>Automated:</b> ${E('registrations without a compelling event are the most common rejection. The Hub flags it before you submit rather than after.')}</span></div>
+  <div class="ds" style="margin-top:14px"><h4 style="display:flex;justify-content:space-between;align-items:center">${E('Help your PRM quote faster')}
+      <button class="fch ${WZ.more?'on':''}" data-wzmore="1" style="font-size:11px">${WZ.more?E('Hide'):E('Add details')} · ${E('optional')}</button></h4>
+    <p class="ppnote" style="margin-top:2px">${E('Only what is above is needed to secure protection. These go straight to your PRM and shorten the quote.')}</p>
+    ${WZ.more?`
+    <div class="two"><div class="fld"><label>${E('Order type')}</label><select data-f="orderType"><option value="">${Er(T('Select…'))}</option>${ORDER_TYPES.map(o=>`<option ${WZ.orderType===o?'selected':''}>${Er(T(o))}</option>`).join('')}</select></div>
+      <div class="fld"><label>${E('Sub-vertical')}</label><select data-f="subv"><option value="">${Er(T('Select…'))}</option>${SUB_VERTICALS.map(o=>`<option ${WZ.subv===o?'selected':''}>${Er(T(o))}</option>`).join('')}</select></div></div>
+    <div class="fld"><label>${E('Deal details')}</label><textarea data-f="details" rows="3" placeholder="${Er(T('Their challenges with the current solution, and what success looks like to them.'))}">${E(WZ.details)}</textarea></div>
+    <div class="two"><div class="fld"><label>${E('Next step')}</label><input data-f="next" value="${E(WZ.next)}" placeholder="${Er(T('Discovery session, demo, exec meeting…'))}"></div>
+      <div class="fld"><label>${E('Next step date')}</label><input data-f="nextDate" type="date" value="${Er(WZ.nextDate)}"></div></div>
+    <div class="ppchips"><button class="ppchip ${WZ.coop?'on':''}" data-wzcoop="1">${E('Co-op funds were used to originate this')}</button></div>`:''}</div>
   ${navBtns()}`;}
 function wizReview(){
   const row=(k,v)=>`<div class="kv"><span>${k}</span><b>${E(v||'—')}</b></div>`;
   return `<div class="rev">${row(E('Selling'),TYPE_L[WZ.kind]||'—')}${row(E('Customer'),WZ.cu)}${row(E('Contact'),WZ.ct)}${row(E('Products'),WZ.pr.join(' · '))}
-    ${row(E('Region'),WZ.rg)}${row(E('Value'),'$'+(WZ.v||'0')+'K')}${row(E('Expected close'),WZ.close)}${row(E('Compelling event'),WZ.ev)}</div>
+    ${row(E('Region'),WZ.rg)}${row(E('Value'),'$'+(WZ.v||'0')+'K')}${row(E('Expected close'),WZ.close)}${row(E('Compelling event'),WZ.ev)}
+    ${WZ.orderType?row(E('Order type'),WZ.orderType):''}${WZ.subv?row(E('Sub-vertical'),WZ.subv):''}${WZ.next?row(E('Next step'),WZ.next+(WZ.nextDate?' · '+WZ.nextDate:'')):''}${WZ.coop?row(E('Co-op originated'),T('Yes')):''}</div>
   <div class="auto" style="margin:0"><span class="z">${sv(I.zap,12,0).replace('fill="none"','fill="currentColor" stroke="none"')}</span>
-    <span><b>${E('On submit:')}</b> ${E('the account is de-duplicated against Aptean direct pipeline, protection starts at 90 days, and the Pre-Sales phase opens for this deal with stage 1 ready.')}</span></div>
+    <span><b>${E('On submit:')}</b> ${E('the account is checked against Aptean direct pipeline and your PRM confirms within one business day. Protection — 90 days — starts on approval. You can begin Pre-Sales while you wait.')}</span></div>
   ${navBtns(T('Submit registration'),true)}`;}
 function wizDone(){
   return `<div class="ok-hero"><div class="tick">${sv(I.ck,30,3)}</div>
     <h3>${Er(WZ.cu)} ${E('is registered')}</h3>
-    <p>${E('Reference')} ${Er(WZ.newId)} · ${E('90 days of protection · Pre-Sales phase is open with stage 1 ready to work.')}</p></div>
+    <p>${E('Reference')} ${Er(WZ.newId)} · ${E('Your PRM confirms within one business day, and 90 days of protection start then. Pre-Sales is open now with stage 1 ready.')}</p></div>
   <div class="ds"><h4>${E('What do you want to do with it?')}</h4><div class="nextopts">
     <button class="nx" data-go="${Er(WZ.newId)}"><span class="ni">${sv(I.bolt,17,2)}</span>
       <span><span class="nt">${E('Start the Pre-Sales flow')}</span><span class="nd">${E('Qualification → discovery → demo, guided stage by stage')}</span></span><span class="ar">${sv(I.chev,15,2.6)}</span></button>
@@ -3863,11 +3964,15 @@ function wizDone(){
       <span><span class="nt">${E('Check pricing and margin first')}</span><span class="nd">${E('Ask Partner AI what this deal is worth to you')}</span></span><span class="ar">${sv(I.chev,15,2.6)}</span></button>
   </div></div>`;}
 function submitDeal(){
-  const id='D-'+(1052+DEALS.length-6);
-  WZ.newId=id;
-  DEALS.unshift({id,cu:WZ.cu||'New customer',pr:WZ.pr.length?WZ.pr:['EAM'],rg:WZ.rg||'North America',
-    v:parseInt(WZ.v||'150',10)||150,own:'You',reg:'Aug 23, 2026',prot:90,type:WZ.kind||'sw',
-    ph:0,st:{presales:0,sales:0,implementation:0,grow:0},part:0,pc:'drafting',pa:'none'});
+  const n=Math.max(1100,...DEALS.map(d=>+String(d.id).replace(/\D/g,'')||0))+1;
+  const id='D-'+n; WZ.newId=id;
+  const d={id,cu:WZ.cu||'New customer',ct:WZ.ct||'',pr:WZ.pr.length?WZ.pr:[authorizedProducts()[0]||'EAM'],rg:WZ.rg||'North America',
+    v:parseInt(WZ.v||'150',10)||150,close:WZ.close||'',ev:WZ.ev||'',own:(Session.user()||{}).name||'You',
+    reg:fmtDate(today()),prot:90,type:WZ.kind||'sw',
+    orderType:WZ.orderType||'',subv:WZ.subv||'',details:WZ.details||'',next:WZ.next||'',nextDate:WZ.nextDate||'',coop:!!WZ.coop,
+    rs:'pending',regAt:today().toISOString(),protEnd:'',outcome:'',
+    ph:0,st:{presales:0,sales:0,implementation:0,grow:0},part:0,pc:'drafting',pa:'none'};
+  DEALS.unshift(d); DealStore.add(d);
   WZ.step=5; drawWizard();
 }
 
@@ -3899,10 +4004,10 @@ const SUGG={home:['What should I do next?','How does partner margin work?','What
  certs:['Which certification unlocks the most?','How long does certification take?'],
  deals:['Which deal needs me most?','What is my pipeline coverage?']};
 const KB=[
- {k:['margin','pricing','price','discount','quote','margen','precio','precios','descuento','cotiza'],a:`Pricing lives inside the deal, never in a downloaded sheet.<br><br><b>Base margin</b> is 31% on EAM new-name license from October 1 (28% until then); renewals are 18% and don't move. Discounts inside your Gold band auto-approve and quote in seconds. Outside the band the Hub builds the approval chain and tracks it — median turnaround this quarter is 6 working hours.<br><br>The margin calculator shows realized margin as you move the discount slider, so you see what a concession costs you <i>before</i> you offer it.`},
+ {k:['margin','pricing','price','discount','quote','margen','precio','precios','descuento','cotiza'],a:`Pricing lives inside the deal, never in a downloaded sheet.<br><br><b>Base margin</b> is 31% on EAM new-name license from October 1 (28% until then); renewals are 18% and don't move. Discounts inside your Premier band auto-approve and quote in seconds. Outside the band the Hub builds the approval chain and tracks it — median turnaround this quarter is 6 working hours.<br><br>The margin calculator shows realized margin as you move the discount slider, so you see what a concession costs you <i>before</i> you offer it.`},
  {k:['next','what should','priority','risk','needs me','siguiente','ahora','prioridad','riesgo','necesita'],a:`Three things, in order:<ol><li><b>Northwind Foods</b> — discovery notes missing 9 days, blocking demo prep.</li><li><b>DEMO-OEE-02</b> — 6 days to expiry, and the Cleary demo depends on it.</li><li><b>Cleary Dairy ROI</b> — still carrying a defaulted downtime cost into a CFO review.</li></ol>Kestrel Foods is quietly the one I'd watch: 52 days of protection left and it hasn't moved a stage in three weeks.`},
  {k:['demo','instance','provision','sandbox','instancia','aprovision'],a:`Demo instances are self-service from <b>Pre-Sales stage 4</b>. Provisioning is ~20 minutes; seeding the Food &amp; Beverage data pack adds about an hour, so start it before the discovery call rather than the night before.<br><br>Instances live 45 days and auto-upgrade each release. You have 4 live and <b>DEMO-OEE-02 expires in 6 days</b>.`},
- {k:['cert','certif','training','enroll','unlock','capacit','inscrib','desbloquea'],a:`Certification gates what you can sell, discount and implement — that's why the tracks map to the three workspaces.<br><br>Highest-leverage gaps right now:<ul><li><b>Value Selling &amp; ROI</b> — self-approve discounts to 12% with no PRM review</li><li><b>3 × Implementation Consultant</b> — unlocks Food &amp; Beverage ERP authorization</li><li><b>Food &amp; Beverage accreditation</b> — demo the industry pack without an Aptean SC on the call</li></ul>Two seats are included in your Gold entitlement each cohort.`},
+ {k:['cert','certif','training','enroll','unlock','capacit','inscrib','desbloquea'],a:`Certification gates what you can sell, discount and implement — that's why the tracks map to the three workspaces.<br><br>Highest-leverage gaps right now:<ul><li><b>Value Selling &amp; ROI</b> — self-approve discounts to 12% with no PRM review</li><li><b>3 × Implementation Consultant</b> — unlocks Food &amp; Beverage ERP authorization</li><li><b>Food &amp; Beverage accreditation</b> — demo the industry pack without an Aptean SC on the call</li></ul>Two seats are included in your Premier entitlement each cohort.`},
  {k:['register','registration','protection','deal reg','registro','registrar','protecc'],a:`Register before you invest, not after. The account is checked against Aptean direct pipeline automatically; clean registrations get <b>90 days of exclusivity</b>.<br><br>Two things get a registration rejected: an account Aptean is already actively working, and no named contact or compelling event. You have 3 awaiting approval, and Cleary Dairy is down to 41 days.`},
  {k:['stage','this stage','what do i need','discovery','etapa','necesito','descubr'],a:`Everything for a stage is attached to the stage — you shouldn't be hunting a library.<br><br>For <b>Discovery</b> that's the question bank for each product, the notes template (required — it gates the next stage), and a 12-minute video on running a plant-floor session. What you capture there pre-populates the ROI model and pre-configures the demo, so it isn't admin, it's the input to the next two stages.`},
  {k:['authoriz','authoris','entitle','sell','region','erp','autoriza','vender','región','region'],a:`You're authorized for <b>EAM</b> and <b>OEE</b> in <b>North America</b> and <b>LATAM</b>.<br><br>Available to add: Food &amp; Beverage ERP, PLM, Supply Chain Planning, Routing &amp; Scheduling — plus EMEA and ANZ. Each has a certification floor: ERP needs 3 certified implementation consultants, the others need 2, and EMEA needs 2 certified solution consultants per product.`},
@@ -3942,6 +4047,7 @@ function go(v,arg){
   else if(v==='certs')renderCerts();
   else if(v==='library')renderLibrary();
   else if(v==='company')renderPartnerAdmin();
+  else if(v==='program')renderProgram();
   else if(v==='onboard'&&typeof renderOnboard==='function')renderOnboard();
   else renderLibrary();
   renderNav();renderAI();window.scrollTo({top:0,behavior:'instant'});
@@ -3964,6 +4070,7 @@ document.addEventListener('click',e=>{
     if(milestone)celebrate(d,milestone);}
   else if(D.act==='register'){openWizard();}
   else if(D.act==='lead'){openLeadForm();}
+  else if(D.act==='coop'){PTAB='coop';go('program');}
   else if(D.act==='ents'){openEnts();}
   else if(D.act==='demo'){openAI();ask('How do I provision a demo instance?');}
   else if(D.act==='case'){openConnect(null);}
@@ -4626,7 +4733,7 @@ document.addEventListener('click',ev=>{
    marked SWAP with fetch() calls; the UI does not change. */
 
 const P_TYPES=['Reseller','Systems Integrator','Referral','Distributor','Affiliate'];
-const P_TIERS=['Registered','Silver','Gold','Platinum'];
+const P_TIERS=['Registered','Authorized','Premier','Elite'];
 const P_STATUS=['Active','Pending','Suspended','Terminated'];
 const P_REGIONS=['NA','LATAM','EMEA','APAC'];
 
@@ -4647,23 +4754,23 @@ const P_FIELDS=[
 
 const SEED_PARTNERS=[
  {id:'p1', code:'APT-00417', legalName:'ABC Consulting Group Ltd.', displayName:'ABC Consulting',
-  type:'Reseller', tier:'Gold', status:'Active', region:'NA', country:'Canada', city:'Calgary',
+  type:'Reseller', tier:'Premier', status:'Active', region:'NA', country:'Canada', city:'Calgary',
   prmOwner:'Helio Samora', signed:'2024-03-11', renewal:'2027-03-11',
   products:['EAM','OEE'], admin:'Renée Okafor'},
  {id:'p2', code:'APT-00392', legalName:'Meridian Industrial Systems Inc.', displayName:'Meridian Industrial',
-  type:'Systems Integrator', tier:'Platinum', status:'Active', region:'NA', country:'United States', city:'Chicago',
+  type:'Systems Integrator', tier:'Elite', status:'Active', region:'NA', country:'United States', city:'Chicago',
   prmOwner:'Helio Samora', signed:'2023-09-02', renewal:'2026-09-02',
   products:['EAM','OEE','ERP'], admin:'Dana Whitfield'},
  {id:'p3', code:'APT-00508', legalName:'Nordvik Teknikk AS', displayName:'Nordvik Teknikk',
-  type:'Reseller', tier:'Silver', status:'Active', region:'EMEA', country:'Norway', city:'Bergen',
+  type:'Reseller', tier:'Authorized', status:'Active', region:'EMEA', country:'Norway', city:'Bergen',
   prmOwner:'Ana Duarte', signed:'2025-01-20', renewal:'2028-01-20',
   products:['EAM'], admin:'Lars Moen'},
  {id:'p4', code:'APT-00611', legalName:'Cadena Logística S.A. de C.V.', displayName:'Cadena Logística',
-  type:'Reseller', tier:'Silver', status:'Active', region:'LATAM', country:'Mexico', city:'Monterrey',
+  type:'Reseller', tier:'Authorized', status:'Active', region:'LATAM', country:'Mexico', city:'Monterrey',
   prmOwner:'Helio Samora', signed:'2025-06-04', renewal:'2028-06-04',
   products:['Paragon','Logility'], admin:'Sofía Rentería'},
  {id:'p5', code:'APT-00233', legalName:'Kellerman Prozesstechnik GmbH', displayName:'Kellerman Prozesstechnik',
-  type:'Systems Integrator', tier:'Gold', status:'Active', region:'EMEA', country:'Germany', city:'Düsseldorf',
+  type:'Systems Integrator', tier:'Premier', status:'Active', region:'EMEA', country:'Germany', city:'Düsseldorf',
   prmOwner:'Ana Duarte', signed:'2023-02-15', renewal:'2026-02-15',
   products:['PLM','ERP','OEE'], admin:'Bettina Hoff'},
  {id:'p6', code:'APT-00744', legalName:'Southern Cross Manufacturing Solutions Pty Ltd', displayName:'Southern Cross MS',
@@ -4675,11 +4782,11 @@ const SEED_PARTNERS=[
   prmOwner:'Helio Samora', signed:'2024-11-08', renewal:'2027-11-08',
   products:['Logility'], admin:'Marcus Bell'},
  {id:'p8', code:'APT-00829', legalName:'Anand Process Technologies Pvt. Ltd.', displayName:'Anand Process Tech',
-  type:'Systems Integrator', tier:'Silver', status:'Active', region:'APAC', country:'India', city:'Pune',
+  type:'Systems Integrator', tier:'Authorized', status:'Active', region:'APAC', country:'India', city:'Pune',
   prmOwner:'Wei Tan', signed:'2025-04-22', renewal:'2028-04-22',
   products:['EAM','PLM'], admin:'Priyanka Raman'},
  {id:'p9', code:'APT-00067', legalName:'Thibault Agroalimentaire SARL', displayName:'Thibault Agro',
-  type:'Reseller', tier:'Gold', status:'Active', region:'EMEA', country:'France', city:'Lyon',
+  type:'Reseller', tier:'Premier', status:'Active', region:'EMEA', country:'France', city:'Lyon',
   prmOwner:'Ana Duarte', signed:'2022-07-19', renewal:'2026-07-19',
   products:['ERP','PLM'], admin:'Camille Thibault'},
  {id:'p10', code:'APT-00901', legalName:'Riverton Plant Services Inc.', displayName:'Riverton Plant Services',
@@ -4687,11 +4794,11 @@ const SEED_PARTNERS=[
   prmOwner:'Helio Samora', signed:'2024-05-30', renewal:'2027-05-30',
   products:['OEE'], admin:'Gail Prentice'},
  {id:'p11', code:'APT-00478', legalName:'Verde Alimentos Distribuidora Ltda.', displayName:'Verde Alimentos',
-  type:'Distributor', tier:'Silver', status:'Active', region:'LATAM', country:'Brazil', city:'Campinas',
+  type:'Distributor', tier:'Authorized', status:'Active', region:'LATAM', country:'Brazil', city:'Campinas',
   prmOwner:'Helio Samora', signed:'2025-02-11', renewal:'2028-02-11',
   products:['ERP'], admin:''},
  {id:'p12', code:'APT-00688', legalName:'Okabe Seizo Solutions K.K.', displayName:'Okabe Seizo',
-  type:'Systems Integrator', tier:'Gold', status:'Active', region:'APAC', country:'Japan', city:'Nagoya',
+  type:'Systems Integrator', tier:'Premier', status:'Active', region:'APAC', country:'Japan', city:'Nagoya',
   prmOwner:'Wei Tan', signed:'2024-01-16', renewal:'2027-01-16',
   products:['OEE','EAM','PLM'], admin:'Kenji Okabe'}];
 
@@ -4865,6 +4972,24 @@ function requestQueue(){
 }
 
 
+
+/* ══════════ PRODUCT-SCOPED MATERIALS ══════════
+   A flow is only meaningful per product. The admin flow map takes a product
+   filter; the partner sees, at each stage, only materials for products they
+   are authorized to sell — and inside a deal, only for that deal's products. */
+const authorizedProducts=()=>PARTNER.products.filter(x=>x.on).map(x=>x.c);
+const matFor=(m,prod)=>m.cross || (prod ? m.prods.indexOf(prod)>=0 : true);
+const matForAny=(m,prods)=>m.cross || !prods || !prods.length || m.prods.some(k=>prods.indexOf(k)>=0);
+/* Materials at a stage, scoped: admin passes a product code or null; the
+   partner side passes the deal's products (or the company's authorization). */
+function stageMaterials(wid,si,scope){
+  const list=MaterialStore.atStage(wid,si);
+  if(scope==null) return list;
+  if(typeof scope==='string') return list.filter(m=>matFor(m,scope));
+  return list.filter(m=>matForAny(m,scope));
+}
+let FMPROD='all';
+
 /* ══════════ MATERIAL REGISTER ══════════
    A material is one record. Where it appears in the flow is a separate
    many-to-many relationship: a material can sit in no stage, one stage, or
@@ -4926,13 +5051,14 @@ const MaterialStore={
 function placeLabel(pl){ const w=flowById(pl.w); if(!w) return '';
   const st=w.stages[pl.s]; return w.name+' · '+(pl.s+1)+'. '+(st?st.n:'?'); }
 
-let REGQ={q:'',t:'all',place:'all'};
+let REGQ={q:'',t:'all',place:'all',prod:'all'};
 
 function materialRegister(){
   const all=MaterialStore.all();
   const q=REGQ.q.toLowerCase();
   const rows=all.filter(m=>
     (REGQ.t==='all'||m.t===REGQ.t)
+    && (REGQ.prod==='all'||matFor(m,REGQ.prod))
     && (REGQ.place==='all'
         || (REGQ.place==='unmapped'&&!m.placements.length)
         || (REGQ.place==='multi'&&m.placements.length>1)
@@ -4953,7 +5079,10 @@ function materialRegister(){
       <input type="search" id="regq" value="${Er(REGQ.q)}" placeholder="${Er(T('Search materials…'))}">
     </div>
     <div class="fchips" style="margin-bottom:8px">${types.map(([k,l])=>`<button class="fch ${REGQ.t===k?'on':''}" data-rt="${k}">${E(l)}</button>`).join('')}</div>
-    <div class="fchips" style="margin-bottom:12px">${places.map(([k,l,n])=>`<button class="fch ${REGQ.place===k?'on':''}" data-rp="${Er(k)}">${E(l)} <i>${n}</i></button>`).join('')}</div>
+    <div class="fchips" style="margin-bottom:8px">${places.map(([k,l,n])=>`<button class="fch ${REGQ.place===k?'on':''}" data-rp="${Er(k)}">${E(l)} <i>${n}</i></button>`).join('')}</div>
+    <div class="fchips" style="margin-bottom:12px"><span class="prodl" style="align-self:center;margin-right:4px">${E('Product')}</span>
+      <button class="fch ${REGQ.prod==='all'?'on':''}" data-rprod="all">${E('Any')}</button>
+      ${PRODUCTS.map(k=>`<button class="fch prod ${REGQ.prod===k?'on':''}" data-rprod="${Er(k)}">${Er(k)} <i>${all.filter(m=>matFor(m,k)&&!m.cross).length}</i></button>`).join('')}</div>
     <div class="tbl-scroll"><table class="pdt">
       <thead><tr><th>${E('Material')}</th><th>${E('Placed in')}</th><th>${E('Products')}</th>
         <th>${E('Languages')}</th><th>${E('Owner')}</th><th>${E('Status')}</th><th></th></tr></thead>
@@ -5038,12 +5167,14 @@ function matCollect(){ const o={};
   return o; }
 
 document.addEventListener('click',ev=>{
-  const t=ev.target.closest('[data-mo],[data-rt],[data-rp],[data-mp],[data-mprod],[data-mcross],[data-mloc],[data-mreq],[data-mclear],[data-msave],[data-mreset2]');
+  const t=ev.target.closest('[data-fmp],[data-rprod],[data-mo],[data-rt],[data-rp],[data-mp],[data-mprod],[data-mcross],[data-mloc],[data-mreq],[data-mclear],[data-msave],[data-mreset2]');
   if(!t) return;
   const d=t.dataset;
+  if(d.fmp!==undefined){ FMPROD=d.fmp; renderAdmin(); return; }
   if(d.mo!==undefined){ openMaterial(d.mo); return; }
   if(d.rt!==undefined){ REGQ.t=d.rt; renderAdmin(); return; }
   if(d.rp!==undefined){ REGQ.place=d.rp; renderAdmin(); return; }
+  if(d.rprod!==undefined){ REGQ.prod=d.rprod; renderAdmin(); return; }
   if(d.mreset2!==undefined){ MaterialStore.reset(); renderAdmin(); return; }
   if(!MAT_OPEN) return;
   const cur=matCollect();
@@ -5293,7 +5424,7 @@ function openOnboardStage(i){
       <div class="ds"><h4>${E('Checklist')}</h4>
         ${s.ck.map((c,j)=>`<button class="ck ${ck[j]?'y':''}" ${st==='active'?`data-obck="${j}"`:'disabled'} style="width:100%;text-align:left;font:inherit;background:none;border:0;cursor:${st==='active'?'pointer':'default'}"><span class="bx">${ck[j]?sv(I.ck,11,3.5):''}</span><span>${E(c)}</span></button>`).join('')}</div>
       <div class="ds"><h4>${E('Attached to this stage')}</h4>
-        ${(MaterialStore.atStage('onboard',i).length?MaterialStore.atStage('onboard',i).map(m=>({t:m.t,n:m.n,m:m.m})):s.as).map(a=>`<button class="res"><span class="ic ${a.t}">${sv(I[a.t],16,2)}</span>
+        ${(()=>{const mapped=stageMaterials('onboard',i,authorizedProducts());return mapped.length?mapped.map(m=>({t:m.t,n:m.n,m:m.m})):s.as;})().map(a=>`<button class="res"><span class="ic ${a.t}">${sv(I[a.t],16,2)}</span>
           <span class="tx"><span class="nm">${E(a.n)}</span><span class="mt">${E(a.m)}</span></span>
           <span class="go">${a.t==='video'?E('Watch'):a.t==='tool'?E('Open'):E('View')} →</span></button>`).join('')}</div>
       <div class="cta">${st==='done'
@@ -5314,6 +5445,53 @@ document.addEventListener('click',ev=>{
     closeDW(); if(S.view==='onboard') renderOnboard(); else if(S.view==='home') renderHome(); renderNav(); }
 });
 
+
+
+/* ══════════ DEAL REGISTRATION LIFECYCLE ══════════
+   Registration is a request, not a fact. Impartner's own form says it: a
+   few fields secure protection; the rest help the PRM quote. So:
+     partner submits  -> rs:'pending'
+     PRM approves     -> rs:'approved', protection window starts (90 days)
+     PRM declines     -> rs:'declined' with a reason
+   Deals the partner creates are persisted here; seed deals are not, so
+   the demo resets cleanly. Won/lost close the deal out of the open list.
+
+   Target schema:
+     deals(id, partner_id, customer, contact, products[], region, value,
+           expected_close, compelling_event, order_type, sub_vertical,
+           details, next_steps, next_steps_date, coop_originated,
+           reg_status, reg_submitted_at, reg_decided_at, reg_decided_by,
+           reg_reason, protected_until, outcome, lost_reason)
+   Salesforce: create Opportunity on approval — deferred. */
+const ORDER_TYPES=['New logo','Add-on','Expansion','Renewal','Migration'];
+const SUB_VERTICALS=['Food & beverage','Chemicals','Pharma & life sciences','Consumer goods','Industrial equipment','Distribution & logistics','Other'];
+const DealStore={
+  _k:'aph-deals', _c:null,
+  _load(){ if(this._c) return this._c;
+    let s={mine:[],patch:{}}; try{s=Object.assign(s,JSON.parse(localStorage.getItem(this._k)||'{}'))}catch(e){}
+    this._c=s; return this._c; },
+  _save(){ try{localStorage.setItem(this._k,JSON.stringify(this._c))}catch(e){} },
+  /* SWAP: POST /api/deals */
+  add(d){ const c=this._load(); c.mine.unshift(d); this._save(); },
+  /* SWAP: PATCH /api/deals/:id */
+  patch(id,p){ const c=this._load(); c.patch[id]=Object.assign({},c.patch[id]||{},p); this._save();
+    const d=DEALS.find(x=>x.id===id); if(d) Object.assign(d,p); },
+  /* Called once at boot: restore partner-created deals and any decisions. */
+  applyAll(){ const c=this._load();
+    c.mine.slice().reverse().forEach(d=>{ if(!DEALS.some(x=>x.id===d.id)) DEALS.unshift(d); });
+    DEALS.forEach(d=>{ if(c.patch[d.id]) Object.assign(d,c.patch[d.id]); }); },
+  pendingRegs(){ return DEALS.filter(d=>d.rs==='pending'); },
+  reset(){ this._c={mine:[],patch:{}}; this._save(); }
+};
+const today=()=>new Date();
+const addDays=(dt,n)=>{const x=new Date(dt); x.setDate(x.getDate()+n); return x;};
+const fmtDate=d=>new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+const regBadge=d=>{ if(d.outcome==='lost') return `<span class="pill bad">${E('Lost')}</span>`;
+  if(d.rs==='pending')  return `<span class="pill warn">${E('Registration pending')}</span>`;
+  if(d.rs==='declined') return `<span class="pill bad">${E('Registration declined')}</span>`;
+  if(d.protEnd){ const left=Math.round((new Date(d.protEnd)-today())/86400000);
+    return `<span class="pill ${left>14?'ok':'warn'}">${left>0?E('Protected')+' · '+left+' '+E('days'):E('Protection expired')}</span>`; }
+  return ''; };
 
 /* ══════════ LEADS (referral intake) ══════════
    Distinct from deal registration. Impartner has a "Beyond ERP Referral
@@ -5336,7 +5514,14 @@ const LeadStore={
        status:'accepted',by:'Brent Robertson',at:'2026-09-12'},
       {id:'L-2214',pid:'p1',company:'Costa Verde Beverages',contact:'Rafael Souto',email:'r.souto@costaverde.example',
        region:'LATAM',products:['EAM','OEE'],source:'Referral',notes:'Referred by an existing customer. Maintenance backlog is the pain.',
-       status:'pending',by:'Tom Reyes',at:'2026-09-22'}];
+       status:'pending',by:'Tom Reyes',at:'2026-09-22'},
+      /* Inbound: passed from Aptean to the partner (Impartner's "Leads" tab). */
+      {id:'L-2190',dir:'in',pid:'p1',company:'Sunfield Nutrition',contact:'Owen Blake',email:'o.blake@sunfield.example',
+       region:'North America',products:['OEE'],source:'Aptean campaign',notes:'Downloaded the OEE ROI guide twice. Two plants in Ohio. Asked for a partner in their region.',
+       status:'new',by:'Helio Samora',at:'2026-09-20'},
+      {id:'L-2196',dir:'in',pid:'p1',company:'Alder Creek Beverages',contact:'Nadia Ferris',email:'n.ferris@aldercreek.example',
+       region:'North America',products:['EAM'],source:'Webinar',notes:'Attended the asset-management webinar. Maintenance manager, budget cycle in Q1.',
+       status:'new',by:'Helio Samora',at:'2026-09-23'}];
     return this._c; },
   /* SWAP: POST /api/leads */
   add(l){ const all=this.all();
@@ -5345,8 +5530,9 @@ const LeadStore={
     all.unshift(rec); this._save(); return rec; },
   /* SWAP: PATCH /api/leads/:id */
   decide(id,status){ const l=this.all().find(x=>x.id===id); if(l){ l.status=status; this._save(); } },
-  mine(){ return this.all().filter(l=>l.pid==='p1'); },
-  pending(){ return this.all().filter(l=>l.status==='pending'); },
+  mine(){ return this.all().filter(l=>l.pid==='p1'&&l.dir!=='in'); },
+  inbound(){ return this.all().filter(l=>l.pid==='p1'&&l.dir==='in'&&l.status!=='declined'&&l.status!=='registered'); },
+  pending(){ return this.all().filter(l=>l.status==='pending'&&l.dir!=='in'); },
   _save(){ try{localStorage.setItem(this._k,JSON.stringify(this._c))}catch(e){} },
   reset(){ this._c=null; try{localStorage.removeItem(this._k)}catch(e){} }
 };
@@ -5383,6 +5569,45 @@ function leadsSection(){
         <i>${Er(l.contact)} · ${Er(l.region)} · ${l.products.join(', ')} · ${Er(l.at)}</i></span>
       <span class="la">${pill(l.status)}${l.status==='accepted'?`<button class="btn g" data-act="register" style="font-size:12px;padding:7px 13px">${E('Register as deal')}</button>`:''}</span></div>`).join('')}`;
 }
+function prmRegQueue(){
+  const pend=DealStore.pendingRegs();
+  return `<div class="sh"><h2>${E('Deal registrations to approve')}${pend.length?` <span class="admtab on" style="padding:2px 0;border:0;cursor:default"><i>${pend.length}</i></span>`:''}</h2>
+      <span class="hint">${pend.length?E('Approving starts 90 days of protection and creates the opportunity in Salesforce.'):E('Nothing waiting.')}</span></div>
+    ${pend.map(d=>`<div class="reqcard"><div class="reqmain">
+        <h4>${Er(d.cu)} <span style="font-weight:500;color:var(--ink-3);font-size:11.5px">${Er(d.id)} · ${Er(d.own)}</span></h4>
+        <div class="reqdelta">${d.pr.map(p=>`<code>${Er(p)}</code>`).join('')}<code>${Er(d.rg)}</code><code>${money(d.v)}</code>${d.close?`<code>${E('close')} ${Er(d.close)}</code>`:''}${d.orderType?`<code>${Er(d.orderType)}</code>`:''}${d.coop?`<code>${E('co-op')}</code>`:''}</div>
+        <div class="rq"><b>${E('Why now:')}</b> ${Er(d.ev||'—')}</div>
+        ${d.details?`<div class="rq" style="margin-top:4px">${Er(d.details)}</div>`:''}
+        ${d.next?`<div class="rq" style="color:var(--ink-3);margin-top:4px">${E('Next:')} ${Er(d.next)}${d.nextDate?' · '+Er(d.nextDate):''}</div>`:''}</div>
+      <div class="reqact"><button class="ok" data-regdec="${Er(d.id)}" data-ok="1">${E('Approve')}</button>
+        <button data-regdec="${Er(d.id)}" data-ok="0">${E('Decline')}</button></div></div>`).join('')}
+    <div style="margin:4px 0 22px"><button class="btn s" data-passlead="1" style="font-size:12.5px;padding:9px 16px">${E('Pass a lead to a partner')}</button></div>`;
+}
+document.addEventListener('click',ev=>{
+  const t=ev.target.closest('[data-regdec],[data-passlead],[data-passgo]'); if(!t) return;
+  const d=t.dataset;
+  if(d.regdec!==undefined){
+    if(d.ok==='1') DealStore.patch(d.regdec,{rs:'approved',regDecidedAt:today().toISOString(),protEnd:addDays(today(),90).toISOString()});
+    else DealStore.patch(d.regdec,{rs:'declined',regDecidedAt:today().toISOString(),rsReason:'Conflicts with direct pipeline'});
+    renderPRM(); return; }
+  if(d.passlead!==undefined){
+    showDW(`<div class="dwh"><button class="x" data-x aria-label="Close">${sv('<path d="M6 6l12 12M18 6L6 18"/>',14,2.4)}</button>
+        <div class="k">${E('Leads')}</div><h2>${E('Pass a lead to a partner')}</h2>
+        <p style="margin:9px 0 0;font-size:12.5px;color:rgba(255,255,255,.82);max-width:46ch;position:relative">${E('The partner sees it under Leads from Aptean. Accepting registers it with protection already started.')}</p></div>
+      <div class="dwb">
+        <div class="fld"><label>${E('Partner')}</label><select id="plPid">${PartnerStore.all().filter(p=>p.status==='Active').map(p=>`<option value="${Er(p.id)}">${Er(p.displayName)}</option>`).join('')}</select></div>
+        <div class="fld"><label>${E('Company')}</label><input id="plCo"></div>
+        <div class="two"><div class="fld"><label>${E('Contact')}</label><input id="plCt"></div><div class="fld"><label>${E('Email')}</label><input id="plEm"></div></div>
+        <div class="two"><div class="fld"><label>${E('Region')}</label><select id="plRg">${P_REGIONS.concat(['North America','LATAM']).filter((v,i,a)=>a.indexOf(v)===i).map(r=>`<option>${Er(r)}</option>`).join('')}</select></div>
+          <div class="fld"><label>${E('Product')}</label><select id="plPr">${PRODUCTS.map(k=>`<option>${Er(k)}</option>`).join('')}</select></div></div>
+        <div class="fld"><label>${E('Source')}</label><select id="plSrc">${['Aptean campaign','Webinar','Inbound','Event','Direct referral'].map(o=>`<option>${Er(T(o))}</option>`).join('')}</select></div>
+        <div class="fld"><label>${E('Context for the partner')}</label><textarea id="plNt" style="min-height:76px"></textarea></div>
+        <div class="cta"><button class="btn g" data-passgo="1">${E('Pass lead')}</button><button class="btn s" data-x>${E('Cancel')}</button></div></div>`); return; }
+  if(d.passgo!==undefined){ const g=i=>{const e=document.getElementById(i);return e?e.value.trim():'';};
+    if(!g('plCo')) return;
+    LeadStore.add({dir:'in',pid:g('plPid'),company:g('plCo'),contact:g('plCt'),email:g('plEm'),region:g('plRg'),products:[g('plPr')],source:g('plSrc'),notes:g('plNt'),status:'new',by:(Session.user()||{}).name||'Aptean'});
+    closeDW(); renderPRM(); }
+});
 function prmLeadsQueue(){
   const pend=LeadStore.pending();
   return `<div class="sh"><h2>${E('Leads from partners')}</h2>
@@ -5401,78 +5626,375 @@ document.addEventListener('click',ev=>{
     if(!g('ldCo')) return;
     LeadStore.add({company:g('ldCo'),contact:g('ldCt'),email:g('ldEm'),region:g('ldRg'),source:g('ldSrc'),notes:g('ldNt'),
       products:[...document.querySelectorAll('#ldPr .ppchip.on')].map(b=>b.dataset.ldp),by:(Session.user()||{}).name||''});
-    closeDW(); go('deals'); return; }
+    closeDW(); DTAB='leads'; go('deals'); return; }
   LeadStore.decide(t.dataset.lddec,t.dataset.st); renderPRM();
 });
 
 /* ══════════ PROGRAM COMPLIANCE ══════════
-   Lightweight replacement for Impartner's Program Compliance page: tier
-   requirements against what the partner actually has. Numbers are
-   PLACEHOLDERS for the real tier policy. */
-const TIER_REQ={
-  Registered:{certs:0,deals:0,orient:1},
-  Silver:    {certs:2,deals:2,orient:1},
-  Gold:      {certs:4,deals:6,orient:1},
-  Platinum:  {certs:8,deals:15,orient:1}};
+   Mirrors Aptean's Program Compliance page in Impartner: four tiers, three
+   requirement categories, benefits per tier, measured over a yearly period.
+   Thresholds marked ~ were not visible on the page and are placeholders.
+
+   Target schema:
+     tier_requirements(tier, key, threshold)
+     partner_attestations(partner_id, key, value, attested_by, attested_at)
+   Attested items (business plan, marketing plan, logo on site, headcount)
+   are Yes/No the Partner Admin declares and the PRM can verify. */
+const COMPLIANCE_PERIOD={from:'Feb 1, 2026',to:'Feb 1, 2027',cadence:'Yearly'};
+const REQ_CATS=[
+ {cat:'Sales requirements',rows:[
+   {k:'arr',l:'Annual recurring revenue (USD)',fmt:'usd',thr:{Registered:0,Authorized:0,Premier:250000,Elite:400000}}]},
+ {cat:'Business planning and marketing',rows:[
+   {k:'bizplan',l:'Completed business plan',bool:1,thr:{Registered:1,Authorized:1,Premier:1,Elite:1}},
+   {k:'mktplan',l:'Marketing plan in place',bool:1,thr:{Registered:1,Authorized:1,Premier:1,Elite:1}},
+   {k:'logo',l:'Aptean logo on partner website',bool:1,thr:{Registered:0,Authorized:1,Premier:1,Elite:1}},
+   {k:'mkthead',l:'Marketing headcount',bool:1,thr:{Registered:1,Authorized:1,Premier:1,Elite:1}},
+   {k:'refs',l:'Referenceable accounts',thr:{Registered:0,Authorized:0,Premier:1,Elite:3}}]},
+ {cat:'Certifications',rows:[
+   {k:'certSales',l:'Sales rep certification',thr:{Registered:1,Authorized:1,Premier:1,Elite:3}},
+   {k:'certPre',l:'Pre-sales solutions consultant certification',thr:{Registered:1,Authorized:1,Premier:1,Elite:2},approx:1},
+   {k:'certImpl',l:'Implementation consultant certification',thr:{Registered:1,Authorized:1,Premier:1,Elite:2},approx:1}]}];
+const TIER_BENEFITS=[
+ {cat:'Sales rebates',rows:[
+   {l:'New logo + add-ons end-of-year rebate',v:{Registered:'—',Authorized:'—',Premier:'Eligible',Elite:'Eligible'}},
+   {l:'Subscription renewal end-of-year rebate',v:{Registered:'—',Authorized:'—',Premier:'Eligible',Elite:'Eligible'}}]},
+ {cat:'Enablement',rows:[
+   {l:'Certification seats included',v:{Registered:'1',Authorized:'2',Premier:'4',Elite:'Unlimited'},approx:1},
+   {l:'Named partner relationship manager',v:{Registered:'Shared',Authorized:'Named',Premier:'Named',Elite:'Named'}}]}];
+
+/* What the partner actually has. Attestations come from the company profile. */
+function partnerActuals(){
+  const pf=PartnerProfile.get(), certOf=ws=>{const c=CERTS.find(x=>x.ws===ws);return c?c.held:0;};
+  return {
+    arr: DEALS.filter(d=>d.ph>=2).reduce((s,d)=>s+(d.v||0),0)*1000,
+    bizplan: pf.attBizPlan?1:0, mktplan: pf.attMktPlan?1:0, logo: pf.attLogo?1:0, mkthead: pf.attMktHead?1:0,
+    refs: DEALS.filter(d=>d.ph===3).length,
+    certSales:certOf('Sales'), certPre:certOf('Pre-Sales'), certImpl:certOf('Implementation') };
+}
+const fmtUsd=n=>'$'+Math.round(n).toLocaleString('en-US');
 function complianceStatus(){
   const p=PartnerStore.get('p1')||{tier:'Registered'};
   const tier=P_TIERS.indexOf(p.tier)>=0?p.tier:'Registered';
-  const req=TIER_REQ[tier];
-  const have={certs:CERTS.reduce((s,c)=>s+c.held,0), deals:DEALS.length, orient:obStageDone(1)?1:0};
-  const rows=[
-    {l:'Certified consultants',need:req.certs,have:have.certs},
-    {l:'Deals registered this year',need:req.deals,have:have.deals},
-    {l:'Program orientation completed',need:req.orient,have:have.orient,bool:true}]
-    .map(r=>Object.assign(r,{ok:r.have>=r.need}));
-  const next=P_TIERS[P_TIERS.indexOf(tier)+1];
-  const nreq=next?TIER_REQ[next]:null;
-  return {tier,rows,ok:rows.every(r=>r.ok),next,
-    nextGap:nreq?[['certs','certified consultants'],['deals','deals registered']].map(([k,l])=>({l,short:Math.max(0,nreq[k]-have[k])})).filter(x=>x.short>0):[]};
+  const have=partnerActuals();
+  const rowsFor=t=>REQ_CATS.flatMap(c=>c.rows.map(r=>({...r,need:r.thr[t],have:have[r.k],ok:have[r.k]>=r.thr[t]})));
+  const pct=t=>{const rs=rowsFor(t).filter(r=>r.need>0);return rs.length?Math.round(rs.filter(r=>r.ok).length/rs.length*100):100;};
+  const rows=rowsFor(tier), next=P_TIERS[P_TIERS.indexOf(tier)+1];
+  const nextGap=next?rowsFor(next).filter(r=>!r.ok).map(r=>({l:r.l,need:r.need,have:r.have,fmt:r.fmt,bool:r.bool})):[];
+  return {tier,rows,ok:rows.every(r=>r.ok),next,nextGap,pct:Object.fromEntries(P_TIERS.map(t=>[t,pct(t)])),have};
 }
-function complianceCard(){
-  const c=complianceStatus();
+const cellVal=(r,t,met)=>{const n=r.thr[t]; if(r.bool) return n?(met?'Yes':'Required'):'—'; if(!n) return '—'; return (r.fmt==='usd'?'≥ '+fmtUsd(n):'≥ '+n)+(r.approx?' ~':'');};
+
+/* The compliance matrix: rows by category, one column per tier, the
+   partner's current tier highlighted. Same shape partners already know. */
+function complianceMatrix(){
+  const c=complianceStatus(), have=c.have;
+  const th=P_TIERS.map(t=>`<th class="cmt ${t===c.tier?'cur':''}"><span>${Er(t)}</span><i>${c.pct[t]}%</i></th>`).join('');
+  const body=REQ_CATS.map(cat=>`<tr class="cmcat"><td colspan="5">${E(cat.cat)}</td></tr>`+cat.rows.map(r=>`<tr>
+      <td class="cml">${E(r.l)}<i>${r.bool?(have[r.k]?E('Yes'):E('No')):r.fmt==='usd'?fmtUsd(have[r.k]):have[r.k]}</i></td>
+      ${P_TIERS.map(t=>{const need=r.thr[t], met=have[r.k]>=need;
+        return `<td class="cmc ${t===c.tier?'cur':''} ${need?(met?'met':'short'):'na'}">${need?(met?sv(I.ck,12,3):'')+' ':''}${Er(cellVal(r,t,met))}</td>`}).join('')}
+    </tr>`).join('')).join('');
+  const ben=TIER_BENEFITS.map(cat=>`<tr class="cmcat"><td colspan="5">${E(cat.cat)}</td></tr>`+cat.rows.map(r=>`<tr>
+      <td class="cml">${E(r.l)}${r.approx?' <i>~</i>':''}</td>${P_TIERS.map(t=>`<td class="cmc ${t===c.tier?'cur':''}">${Er(r.v[t])}</td>`).join('')}</tr>`).join('')).join('');
+  return `<div class="tbl-scroll"><table class="cmx">
+      <thead><tr><th class="cml">${E('Requirements')}</th>${th}</tr></thead><tbody>${body}</tbody>
+      <thead><tr><th class="cml" style="padding-top:18px">${E('Benefits')}</th><th colspan="4"></th></tr></thead><tbody>${ben}</tbody></table></div>
+    <p class="ppnote">${E('Measured')} ${Er(COMPLIANCE_PERIOD.from)} – ${Er(COMPLIANCE_PERIOD.to)} · ${E(COMPLIANCE_PERIOD.cadence)}. ~ ${E('placeholder threshold, to confirm with the program team.')}</p>`;
+}
+function complianceCard(){ /* compact version for the company profile sidebar */
+  const c=complianceStatus(), short=c.rows.filter(r=>!r.ok);
   return `<div class="ppcard"><h3>${E('Program standing')}</h3>
-    <div class="ppsub">${E('Your tier and what keeps it. Requirements are set by Aptean.')}</div>
+    <div class="ppsub">${E('Your tier and what keeps it. Full matrix on the Program page.')}</div>
     <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px"><span class="pill tier">${Er(c.tier)}</span>
       <span class="pill ${c.ok?'ok':'warn'}">${c.ok?E('In good standing'):E('Requirement not met')}</span></div>
-    <div class="cmpl">${c.rows.map(r=>`<div class="cmpr"><b>${E(r.l)}</b><span class="hv">${r.bool?(r.have?E('Yes'):E('No')):r.have+' / '+r.need}</span>
-      <span class="pill ${r.ok?'ok':'bad'}" style="min-width:52px;text-align:center">${r.ok?E('Met'):E('Short')}</span></div>`).join('')}</div>
-    ${c.next?`<p class="ppnote" style="margin-top:12px"><b>${E('Next tier')}: ${Er(c.next)}.</b> ${c.nextGap.length?E('Short by')+' '+c.nextGap.map(g=>g.short+' '+T(g.l)).join(', ')+'.':E('You already meet its requirements — ask your PRM about a review.')}</p>`:''}</div>`;
+    ${short.length?`<div class="cmpl">${short.map(r=>`<div class="cmpr"><b>${E(r.l)}</b><span class="hv">${r.bool?E('No'):r.fmt==='usd'?fmtUsd(r.have):r.have+' / '+r.need}</span><span class="pill bad">${E('Short')}</span></div>`).join('')}</div>`:''}
+    <button class="btn s" data-nav="program" style="font-size:12px;padding:8px 14px;margin-top:10px">${E('Open the Program page')}</button></div>`;
 }
+function renderProgram(){
+  const c=complianceStatus();
+  const hero=`<section class="hero">
+    <div class="bg" style="background-image:url('${A.bgDeep}')"></div><div class="vl"></div>
+    <div class="in"><div><div class="kick" style="color:rgba(255,255,255,.62)">${E('Aptean Global Partner Program')}</div>
+        <h1 style="margin-top:5px">${Er(c.tier)} ${E('partner')}</h1>
+        <div class="sub">${c.next?E('Progress toward')+' '+Er(c.next)+': '+c.pct[c.next]+'%'+(c.nextGap.length?' · '+E('short on')+' '+c.nextGap.length+' '+E('requirements'):' · '+E('you qualify — ask your PRM for a review')):E('Top tier.')}</div>
+        <div class="ents"><span class="ep gold">${Er(c.tier)}</span><span class="ep ${c.ok?'on':'gold'}">${c.ok?E('In good standing'):E('Needs attention')}</span></div></div>
+      <div class="hstats">${P_TIERS.map(t=>`<div class="hstat"><div class="v num">${c.pct[t]}%</div><div class="l">${Er(t)}</div></div>`).join('')}</div>
+    </div></section>`;
+  const att=`<div class="sh" style="margin-top:22px"><h2>${E('Your attestations')}</h2>
+      <span class="hint">${E('Yes/No items you declare. Your PRM can ask for evidence.')}</span></div>
+    <div class="ppchips" style="margin-bottom:6px">${[['attBizPlan','Completed business plan'],['attMktPlan','Marketing plan in place'],['attLogo','Aptean logo on our website'],['attMktHead','Marketing headcount assigned']]
+      .map(([k,l])=>`<button class="ppchip ${PartnerProfile.get()[k]?'on':''}" data-att="${k}">${E(l)}</button>`).join('')}</div>`;
+  const tabs=`<div class="admtabs">${[['standing','Standing',''],['plan','Business plan',PlanStore.pct()+'%'],['coop','Co-op funds',MdfStore.pendingReqs().length?String(MdfStore.pendingReqs().length):''],['events','Events',String(EVENTS.filter(e=>EventStore.isReg(e.id)).length||'')]]
+    .map(([k,l,n])=>`<button class="admtab ${PTAB===k?'on':''}" data-ptab="${k}">${E(l)}${n?`<i>${n}</i>`:''}</button>`).join('')}</div>`;
+  const body = PTAB==='plan'?planTab() : PTAB==='coop'?coopTab() : PTAB==='events'?eventsTab()
+    : att+`<div class="sh" style="margin-top:22px"><h2>${E('Requirements and benefits by tier')}</h2></div>`+complianceMatrix();
+  document.getElementById('view').innerHTML=hero+tabs+body+footer();
+  renderNav();
+}
+document.addEventListener('click',ev=>{
+  const t=ev.target.closest('[data-att]'); if(!t) return;
+  const k=t.dataset.att, cur=PartnerProfile.get(); const patch={}; patch[k]=!cur[k];
+  PartnerProfile.save(patch); renderProgram();
+});
+
+
+/* ══════════ BUSINESS PLAN (partner side) ══════════
+   Mirrors Impartner's Business Planning: a dated plan, completion %, notes,
+   attachments, and strategic-account lists. Targets and initiatives come
+   from the PRM-side PLANS record; the partner contributes notes, account
+   lists and initiative status.
+   Target schema:
+     business_plans(id, partner_id, period_start, period_end, status, cadence)
+     plan_targets(plan_id, metric, target, actual)
+     plan_initiatives(plan_id, title, owner, status, due)
+     plan_notes(plan_id, author, body, at)
+     plan_accounts(plan_id, name, website, kind)   -- strategic|current|prospect */
+const PlanStore={
+  _k:'aph-plan', _c:null,
+  _load(){ if(this._c) return this._c;
+    let s={notes:[],files:[],accounts:null,init:{}}; try{s=Object.assign(s,JSON.parse(localStorage.getItem(this._k)||'{}'))}catch(e){}
+    if(!s.accounts) s.accounts=[
+      {n:'Northwind Foods',w:'northwindfoods.example',k:'strategic'},{n:'Cleary Dairy Group',w:'clearydairy.example',k:'strategic'},
+      {n:'Tallgrass Dairy',w:'tallgrass.example',k:'current'},{n:'Kestrel Foods',w:'kestrelfoods.example',k:'current'},
+      {n:'Harbor Ridge Dairy',w:'harborridge.example',k:'prospect'},{n:'Costa Verde Beverages',w:'costaverde.example',k:'prospect'}];
+    this._c=s; return this._c; },
+  _save(){ try{localStorage.setItem(this._k,JSON.stringify(this._c))}catch(e){} },
+  base(){ return PLANS[PARTNER.name]||{st:'none',tgt:{},init:[],signed:'',next:'',last:'',cad:''}; },
+  addNote(body){ const c=this._load(); c.notes.unshift({by:(Session.user()||{}).name||'',at:today().toISOString(),body:body}); this._save(); },
+  addFile(name){ const c=this._load(); c.files.unshift({n:name,at:today().toISOString()}); this._save(); },
+  addAccount(a){ const c=this._load(); c.accounts.push(a); this._save(); },
+  setInit(i,s){ const c=this._load(); c.init[i]=s; this._save(); },
+  initStatus(i){ const c=this._load(); return c.init[i]||(this.base().init[i]||{}).s||'on'; },
+  pct(){ const b=this.base(); const t=b.tgt||{}; const keys=Object.keys(t); if(!keys.length) return 0;
+    const r=keys.reduce((s,k)=>s+Math.min(1,t[k][0]/(t[k][1]||1)),0)/keys.length;
+    const inits=(b.init||[]).length; const done=(b.init||[]).filter((x,i)=>this.initStatus(i)==='done').length;
+    return Math.round((r*0.6+(inits?done/inits:0)*0.4)*100); },
+  reset(){ this._c=null; try{localStorage.removeItem(this._k)}catch(e){} }
+};
+
+/* ══════════ CO-OP FUNDS (MDF) ══════════
+   Mirrors Impartner's Co-Op Funds: requests, then claims against approved
+   requests, with a running balance against the tier allocation.
+   Target schema:
+     mdf_allocations(partner_id, period, amount)
+     mdf_requests(id, partner_id, title, activity, amount, start, end,
+                  description, outcome, status, approved_amount, decided_by)
+     mdf_claims(id, request_id, amount, proof_files[], status, paid_at)
+   Salesforce/finance: claim payment — deferred. */
+const MDF_ACTIVITIES=['Trade show or event','Webinar','Digital campaign','Content creation','Customer event','Sales enablement','Other'];
+const MDF_ALLOC={Registered:0,Authorized:5000,Premier:25000,Elite:60000}; /* ~ placeholders */
+const MdfStore={
+  _k:'aph-mdf', _c:null,
+  _load(){ if(this._c) return this._c;
+    let s=null; try{s=JSON.parse(localStorage.getItem(this._k)||'null')}catch(e){}
+    this._c = s || {req:[
+      {id:'CF-401',pid:'p1',title:'PACK EXPO booth share — Chicago',activity:'Trade show or event',amount:8000,start:'2026-11-02',end:'2026-11-05',
+       desc:'Shared 10x10 with Aptean branding, OEE demo station.',outcome:'25 qualified conversations, 5 demos booked.',status:'approved',approved:8000,at:'2026-09-08',by:'Renée Okafor'},
+      {id:'CF-412',pid:'p1',title:'Maintenance excellence webinar series',activity:'Webinar',amount:3500,start:'2026-10-14',end:'2026-12-09',
+       desc:'Three webinars with Aptean EAM product marketing.',outcome:'120 registrants, 8 discovery calls.',status:'pending',approved:0,at:'2026-09-24',by:'Renée Okafor'}],
+      claims:[{id:'CL-77',rid:'CF-401',amount:4200,proof:['booth_invoice.pdf','photos.zip'],status:'submitted',at:'2026-09-20'}]};
+    return this._c; },
+  _save(){ try{localStorage.setItem(this._k,JSON.stringify(this._c))}catch(e){} },
+  reqs(){ return this._load().req.filter(r=>r.pid==='p1'); },
+  claims(){ return this._load().claims; },
+  claimsFor(rid){ return this.claims().filter(c=>c.rid===rid); },
+  /* SWAP: POST /api/mdf/requests */
+  addReq(r){ const c=this._load(); const n=Math.max(400,...c.req.map(x=>+String(x.id).replace(/\D/g,'')||0))+1;
+    const rec=Object.assign({id:'CF-'+n,pid:'p1',status:'pending',approved:0,at:today().toISOString().slice(0,10),by:(Session.user()||{}).name||''},r);
+    c.req.unshift(rec); this._save(); return rec; },
+  decideReq(id,ok,amt){ const r=this._load().req.find(x=>x.id===id); if(!r) return;
+    r.status=ok?'approved':'declined'; r.approved=ok?(amt||r.amount):0; this._save(); },
+  /* SWAP: POST /api/mdf/claims */
+  addClaim(rid,amount,proof){ const c=this._load(); const n=Math.max(70,...c.claims.map(x=>+String(x.id).replace(/\D/g,'')||0))+1;
+    c.claims.unshift({id:'CL-'+n,rid:rid,amount:amount,proof:proof,status:'submitted',at:today().toISOString().slice(0,10)}); this._save(); },
+  decideClaim(id,ok){ const c=this._load().claims.find(x=>x.id===id); if(c){ c.status=ok?'paid':'rejected'; c.paidAt=ok?today().toISOString():''; this._save(); } },
+  summary(){ const p=PartnerStore.get('p1')||{tier:'Registered'}; const alloc=MDF_ALLOC[p.tier]||0;
+    const reqs=this.reqs(); const approved=reqs.filter(r=>r.status==='approved').reduce((s,r)=>s+r.approved,0);
+    const pending=reqs.filter(r=>r.status==='pending').reduce((s,r)=>s+r.amount,0);
+    const paid=this.claims().filter(c=>c.status==='paid').reduce((s,c)=>s+c.amount,0);
+    const claimed=this.claims().filter(c=>c.status!=='rejected').reduce((s,c)=>s+c.amount,0);
+    return {alloc,approved,pending,paid,claimed,available:Math.max(0,alloc-approved)}; },
+  pendingReqs(){ return this._load().req.filter(r=>r.status==='pending'); },
+  pendingClaims(){ return this.claims().filter(c=>c.status==='submitted'); },
+  reset(){ this._c=null; try{localStorage.removeItem(this._k)}catch(e){} }
+};
+
+/* ══════════ EVENTS ══════════
+   Target schema: events(id, title, kind, start, end, location, url, products[]),
+   event_registrations(event_id, user_id, at). */
+const EVENTS=[
+ {id:'E-1',t:'Partner Kickoff 2027 — Copenhagen',k:'Partner event',d:'2027-02-09',end:'2027-02-11',loc:'Copenhagen, Denmark',pr:[],desc:'Annual partner kickoff. Beyond ERP breakout track, product roadmaps, awards.'},
+ {id:'E-2',t:'OEE 26.2 release briefing',k:'Webinar',d:'2026-10-07',loc:'Online',pr:['OEE'],desc:'What changed, what to demo, what to tell customers.'},
+ {id:'E-3',t:'EAM pre-sales certification bootcamp',k:'Training',d:'2026-10-20',end:'2026-10-22',loc:'Online',pr:['EAM'],desc:'Three half-days plus assessment. Counts toward Pre-sales certification.'},
+ {id:'E-4',t:'PACK EXPO International',k:'Trade show',d:'2026-11-02',end:'2026-11-05',loc:'Chicago, IL',pr:['OEE','EAM','PLM'],desc:'Aptean booth with partner demo stations. Co-op eligible.'},
+ {id:'E-5',t:'Ask Me Anything — partner program',k:'Webinar',d:'2026-10-21',loc:'Online',pr:[],desc:'Open session with the program team. Submit questions early.'},
+ {id:'E-6',t:'Logility demand planning masterclass',k:'Training',d:'2026-11-18',loc:'Online',pr:['Logility'],desc:'For SCs selling Logility. Prerequisite: fundamentals course.'}];
+const EventStore={
+  _k:'aph-events', _c:null,
+  _load(){ if(this._c) return this._c; let s={}; try{s=JSON.parse(localStorage.getItem(this._k)||'{}')}catch(e){} this._c=s; return this._c; },
+  isReg(id){ return !!this._load()[id]; },
+  toggle(id){ const c=this._load(); if(c[id]) delete c[id]; else c[id]=today().toISOString(); try{localStorage.setItem(this._k,JSON.stringify(c))}catch(e){} },
+  ics(e){ const dt=s=>s.replace(/-/g,''); const end=e.end||e.d;
+    return 'data:text/calendar;charset=utf-8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT','UID:'+e.id+'@aptean-partner-hub','DTSTART;VALUE=DATE:'+dt(e.d),'DTEND;VALUE=DATE:'+dt(addDays(end,1).toISOString().slice(0,10)),'SUMMARY:'+e.t,'LOCATION:'+e.loc,'DESCRIPTION:'+e.desc,'END:VEVENT','END:VCALENDAR'].join('\r\n')); }
+};
+
+let PTAB='standing';
+function planTab(){
+  const b=PlanStore.base(), s=PlanStore._load(), pct=PlanStore.pct();
+  const tg=[['acv','New ACV (US$M)'],['logos','New logos'],['certs','Certified staff'],['agents','Agents deployed']].filter(([k])=>b.tgt&&b.tgt[k]);
+  const acc=k=>s.accounts.filter(a=>a.k===k);
+  const accTable=(k,l)=>`<div class="ppcard"><h3>${E(l)} <span style="font-weight:400;color:var(--ink-3)">· ${acc(k).length}</span></h3>
+    ${acc(k).length?`<div class="cmpl">${acc(k).map(a=>`<div class="cmpr" style="grid-template-columns:1fr auto"><b>${Er(a.n)}</b><span class="hv">${Er(a.w)}</span></div>`).join('')}</div>`:`<p class="ppnote">${E('None listed yet.')}</p>`}
+    <button class="btn s" data-plnacc="${k}" style="font-size:12px;padding:7px 13px;margin-top:10px">${E('Add')}</button></div>`;
+  return `<div class="wya" style="margin-top:14px">
+    <div class="wy"><div class="gl">${E('Plan period')}</div><div class="gv" style="font-size:16px">${Er(b.signed||'—')} → ${Er(b.next||'—')}</div>
+      <div class="gs">${E('Reviewed')} ${E(b.cad||'—')} · ${E('last review')} ${Er(b.last||'—')}</div></div>
+    <div class="wy"><div class="gl">${E('Plan completed')}</div><div class="gv">${pct}<i>%</i></div>
+      <div class="gt"><i style="width:${pct}%;background:var(--acc)"></i></div>
+      <div class="gs">${E('60% targets, 40% initiatives done.')}</div></div>
+    <div class="wy"><div class="gl">${E('Status')}</div><div class="gv" style="font-size:18px">${E((PLAN_ST[b.st]||PLAN_ST.none).l)}</div>
+      <div class="st"><s style="background:var(--${(PLAN_ST[b.st]||PLAN_ST.none).c})"></s>${E('Set by your PRM at review')}</div></div></div>
+    <div class="ppwrap"><div>
+      <div class="ppcard"><h3>${E('Targets')}</h3><div class="ppsub">${E('Actual against target for the plan period.')}</div>
+        <div class="cmpl">${tg.map(([k,l])=>{const [a,t]=b.tgt[k]; const p=Math.min(100,Math.round(a/(t||1)*100));
+          return `<div class="cmpr" style="grid-template-columns:1fr 140px auto"><b>${E(l)}</b><span style="display:block;height:4px;border-radius:2px;background:var(--line);overflow:hidden"><i style="display:block;height:100%;width:${p}%;background:${p>=100?'var(--ok)':'var(--acc)'};border-radius:2px"></i></span><span class="hv">${a} / ${t}</span></div>`}).join('')}</div></div>
+      <div class="ppcard"><h3>${E('Initiatives')}</h3><div class="ppsub">${E('Update the status of yours; Aptean-owned ones are updated by your PRM.')}</div>
+        ${(b.init||[]).map((x,i)=>{const st=PlanStore.initStatus(i); const mine=x.o!=='Aptean';
+          return `<div class="cmpr" style="grid-template-columns:1fr auto auto"><b>${E(x.t)}<i style="display:block;font-style:normal;font-weight:400;font-size:11px;color:var(--ink-3)">${E(x.o)} · ${E('due')} ${Er(x.d)}</i></b>
+            ${mine?`<select class="pmprim" data-plninit="${i}">${Object.keys(INIT_ST).map(k=>`<option value="${k}" ${st===k?'selected':''}>${E(INIT_ST[k].l)}</option>`).join('')}</select>`:`<span></span>`}
+            <span class="pill ${INIT_ST[st].c}">${E(INIT_ST[st].l)}</span></div>`}).join('')}</div>
+      <div class="ppcard"><h3>${E('Notes')}</h3>
+        <div class="ppfld"><textarea id="plnNote" placeholder="${Er(T('Progress, blockers, asks for your PRM.'))}" style="min-height:70px"></textarea></div>
+        <button class="btn g" data-plnnote="1" style="font-size:12px;padding:8px 14px">${E('Add note')}</button>
+        ${s.notes.map(n=>`<div class="cmpr" style="grid-template-columns:1fr;margin-top:8px"><span><b>${Er(n.by)}</b> <span style="color:var(--ink-3)">· ${fmtDate(n.at)}</span><br>${Er(n.body)}</span></div>`).join('')}</div>
+      <div class="ppcard"><h3>${E('Attachments')}</h3>
+        <input type="file" id="plnFile" style="display:none" multiple><button class="btn s" data-plnfile="1" style="font-size:12px;padding:8px 14px">${E('Upload a file')}</button>
+        ${s.files.length?`<div class="cmpl" style="margin-top:10px">${s.files.map(f=>`<div class="cmpr" style="grid-template-columns:1fr auto"><b>${Er(f.n)}</b><span class="hv">${fmtDate(f.at)}</span></div>`).join('')}</div>`:''}
+        <p class="ppnote">${E('Files are listed here; storage is wired in production.')}</p></div>
+    </div><div class="ppside">${accTable('strategic','Strategic accounts')}${accTable('current','Current customers')}${accTable('prospect','Prospects')}</div></div>`;
+}
+function coopTab(){
+  const s=MdfStore.summary(), reqs=MdfStore.reqs();
+  const pill=st=>`<span class="pill ${st==='approved'||st==='paid'?'ok':st==='pending'||st==='submitted'?'warn':'bad'}">${E(st)}</span>`;
+  return `<div class="wya" style="margin-top:14px">
+    <div class="wy"><div class="gl">${E('Available to request')}</div><div class="gv">${fmtUsd(s.available)}</div>
+      <div class="gt"><i style="width:${s.alloc?Math.round(s.approved/s.alloc*100):0}%;background:var(--acc)"></i></div>
+      <div class="gs">${fmtUsd(s.approved)} ${E('of')} ${fmtUsd(s.alloc)} ${E('approved this period')} · ${Er(PartnerStore.get('p1').tier)} ${E('allocation')} ~</div></div>
+    <div class="wy"><div class="gl">${E('Pending approval')}</div><div class="gv">${fmtUsd(s.pending)}</div><div class="gs">${(n=>n+' '+E(n===1?'request with your PRM':'requests with your PRM'))(reqs.filter(r=>r.status==='pending').length)}</div></div>
+    <div class="wy"><div class="gl">${E('Claimed / paid')}</div><div class="gv">${fmtUsd(s.paid)}<i>${E('paid')}</i></div><div class="gs">${fmtUsd(s.claimed-s.paid)} ${E('in claims awaiting payment')}</div></div></div>
+    <div class="sh" style="margin-top:22px"><h2>${E('Requests')}</h2><button class="btn g" data-mdfnew="1" style="font-size:12.5px;padding:9px 16px">${sv(I.plus,14,2.6)} ${E('Request co-op funds')}</button></div>
+    <p class="ppnote" style="margin:-4px 0 12px">${E('Request before the activity. Once approved, submit claims with proof of performance and invoices, up to the approved amount.')}</p>
+    ${reqs.map(r=>{const cl=MdfStore.claimsFor(r.id); const claimed=cl.filter(c=>c.status!=='rejected').reduce((x,c)=>x+c.amount,0);
+      return `<div class="reqcard"><div class="reqmain"><h4>${Er(r.title)} <span style="font-weight:500;color:var(--ink-3);font-size:11.5px">${Er(r.id)}</span></h4>
+        <div class="reqdelta"><code>${E(r.activity)}</code><code>${fmtUsd(r.amount)}</code><code>${Er(r.start)}${r.end?' → '+Er(r.end):''}</code>${pill(r.status)}</div>
+        <div class="rq">${Er(r.desc)}</div>
+        ${r.status==='approved'?`<div class="rq" style="margin-top:6px;color:var(--ink-3)">${E('Approved')} ${fmtUsd(r.approved)} · ${E('claimed')} ${fmtUsd(claimed)} · ${E('remaining')} ${fmtUsd(Math.max(0,r.approved-claimed))}</div>
+          ${cl.map(c=>`<div class="rq" style="margin-top:4px">↳ ${Er(c.id)} · ${fmtUsd(c.amount)} · ${c.proof.join(', ')} ${pill(c.status)}</div>`).join('')}`:''}</div>
+      <div class="reqact">${r.status==='approved'&&r.approved-claimed>0?`<button class="ok" data-mdfclaim="${Er(r.id)}">${E('Submit claim')}</button>`:''}</div></div>`}).join('')||`<div class="libempty">${E('No requests yet.')}</div>`}`;
+}
+function eventsTab(){
+  const auth=authorizedProducts(); const up=EVENTS.slice().sort((a,b)=>a.d<b.d?-1:1);
+  return `<div class="sh" style="margin-top:18px"><h2>${E('Upcoming events')}</h2><span class="hint">${E('Webinars, training and shows. Register here; add to your calendar with one click.')}</span></div>
+    ${up.map(e=>{const reg=EventStore.isReg(e.id); const rel=!e.pr.length||e.pr.some(k=>auth.indexOf(k)>=0);
+      return `<div class="reqcard" style="${rel?'':'opacity:.65'}"><div class="reqmain"><h4>${Er(e.t)} <span class="pill neutral">${E(e.k)}</span>${reg?` <span class="pill ok">${E('Registered')}</span>`:''}</h4>
+        <div class="reqdelta"><code>${fmtDate(e.d)}${e.end?' – '+fmtDate(e.end):''}</code><code>${Er(e.loc)}</code>${e.pr.map(k=>`<code>${Er(k)}</code>`).join('')}</div>
+        <div class="rq">${Er(e.desc)}</div></div>
+      <div class="reqact"><button class="${reg?'':'ok'}" data-evreg="${Er(e.id)}">${reg?E('Cancel registration'):E('Register')}</button>
+        <a class="btn s" href="${EventStore.ics(e)}" download="${Er(e.id)}.ics" style="font-size:12px;padding:7px 13px">${E('Add to calendar')}</a></div></div>`}).join('')}`;
+}
+document.addEventListener('click',ev=>{
+  const t=ev.target.closest('[data-ptab],[data-plnnote],[data-plnfile],[data-plnacc],[data-plnaccgo],[data-mdfnew],[data-mdfgo],[data-mdfclaim],[data-mdfclaimgo],[data-evreg]'); if(!t) return;
+  const d=t.dataset, g=i=>{const e=document.getElementById(i);return e?e.value.trim():'';};
+  if(d.ptab!==undefined){ PTAB=d.ptab; renderProgram(); return; }
+  if(d.plnnote!==undefined){ const b=g('plnNote'); if(!b) return; PlanStore.addNote(b); renderProgram(); return; }
+  if(d.plnfile!==undefined){ const f=document.getElementById('plnFile'); if(!f) return;
+    f.onchange=()=>{[...f.files].forEach(x=>PlanStore.addFile(x.name)); renderProgram();}; f.click(); return; }
+  if(d.plnacc!==undefined){ showDW(`<div class="dwh"><button class="x" data-x aria-label="Close">${sv('<path d="M6 6l12 12M18 6L6 18"/>',14,2.4)}</button><div class="k">${E('Business plan')}</div><h2>${E('Add account')}</h2></div>
+      <div class="dwb"><div class="fld"><label>${E('Company')}</label><input id="acN"></div><div class="fld"><label>${E('Website')}</label><input id="acW"></div>
+      <div class="cta"><button class="btn g" data-plnaccgo="${Er(d.plnacc)}">${E('Add')}</button><button class="btn s" data-x>${E('Cancel')}</button></div></div>`); return; }
+  if(d.plnaccgo!==undefined){ if(!g('acN')) return; PlanStore.addAccount({n:g('acN'),w:g('acW'),k:d.plnaccgo}); closeDW(); renderProgram(); return; }
+  if(d.mdfnew!==undefined){ showDW(`<div class="dwh"><button class="x" data-x aria-label="Close">${sv('<path d="M6 6l12 12M18 6L6 18"/>',14,2.4)}</button><div class="k">${E('Co-op funds')}</div><h2>${E('Request co-op funds')}</h2>
+        <p style="margin:9px 0 0;font-size:12.5px;color:rgba(255,255,255,.82);max-width:46ch;position:relative">${E('Request before the activity. Your PRM approves an amount; you claim against it afterwards with proof.')}</p></div>
+      <div class="dwb"><div class="fld"><label>${E('Activity title')}</label><input id="mdT"></div>
+        <div class="two"><div class="fld"><label>${E('Activity type')}</label><select id="mdA">${MDF_ACTIVITIES.map(o=>`<option>${Er(T(o))}</option>`).join('')}</select></div>
+          <div class="fld"><label>${E('Amount requested (USD)')}</label><input id="mdAmt" inputmode="numeric" placeholder="5000"></div></div>
+        <div class="two"><div class="fld"><label>${E('Start')}</label><input id="mdS" type="date"></div><div class="fld"><label>${E('End')}</label><input id="mdE" type="date"></div></div>
+        <div class="fld"><label>${E('What you will do')}</label><textarea id="mdD" style="min-height:70px"></textarea></div>
+        <div class="fld"><label>${E('Expected outcome')}</label><input id="mdO" placeholder="${Er(T('Leads, meetings, demos, registrations…'))}"></div>
+        <div class="cta"><button class="btn g" data-mdfgo="1">${E('Submit request')}</button><button class="btn s" data-x>${E('Cancel')}</button></div></div>`); return; }
+  if(d.mdfgo!==undefined){ if(!g('mdT')||!g('mdAmt')) return;
+    MdfStore.addReq({title:g('mdT'),activity:g('mdA'),amount:+g('mdAmt').replace(/\D/g,'')||0,start:g('mdS'),end:g('mdE'),desc:g('mdD'),outcome:g('mdO')}); closeDW(); renderProgram(); return; }
+  if(d.mdfclaim!==undefined){ const r=MdfStore.reqs().find(x=>x.id===d.mdfclaim); const rem=r.approved-MdfStore.claimsFor(r.id).filter(c=>c.status!=='rejected').reduce((x,c)=>x+c.amount,0);
+    showDW(`<div class="dwh"><button class="x" data-x aria-label="Close">${sv('<path d="M6 6l12 12M18 6L6 18"/>',14,2.4)}</button><div class="k">${Er(r.id)} · ${Er(r.title)}</div><h2>${E('Submit a claim')}</h2></div>
+      <div class="dwb"><p style="margin:0 0 12px;font-size:12.5px;color:var(--ink-2)">${E('Up to')} <b>${fmtUsd(rem)}</b> ${E('remains on this approval.')}</p>
+        <div class="fld"><label>${E('Claim amount (USD)')}</label><input id="clAmt" inputmode="numeric" value="${rem}"></div>
+        <div class="fld"><label>${E('Proof of performance')}</label><input type="file" id="clFiles" multiple><p class="ppnote">${E('Invoices, photos, registration lists. File names are recorded here; storage is wired in production.')}</p></div>
+        <div class="cta"><button class="btn g" data-mdfclaimgo="${Er(r.id)}" data-max="${rem}">${E('Submit claim')}</button><button class="btn s" data-x>${E('Cancel')}</button></div></div>`); return; }
+  if(d.mdfclaimgo!==undefined){ const amt=Math.min(+d.max,+g('clAmt').replace(/\D/g,'')||0); if(!amt) return;
+    const f=document.getElementById('clFiles'); MdfStore.addClaim(d.mdfclaimgo,amt,f&&f.files.length?[...f.files].map(x=>x.name):['(no file)']); closeDW(); renderProgram(); return; }
+  if(d.evreg!==undefined){ EventStore.toggle(d.evreg); renderProgram(); return; }
+});
+document.addEventListener('change',ev=>{ const s=ev.target.closest('[data-plninit]'); if(!s) return; PlanStore.setInit(+s.dataset.plninit,s.value); renderProgram(); });
+
+/* PRM side: co-op approvals */
+function prmCoopQueue(){
+  const rq=MdfStore.pendingReqs(), cl=MdfStore.pendingClaims();
+  if(!rq.length&&!cl.length) return '';
+  return `<div class="sh"><h2>${E('Co-op funds to approve')}</h2><span class="hint">${E('Requests before the activity, claims after it with proof.')}</span></div>
+    ${rq.map(r=>`<div class="reqcard"><div class="reqmain"><h4>${Er(r.title)} <span style="font-weight:500;color:var(--ink-3);font-size:11.5px">${Er(r.id)} · ${Er(r.by)}</span></h4>
+        <div class="reqdelta"><code>${E(r.activity)}</code><code>${fmtUsd(r.amount)}</code><code>${Er(r.start)}${r.end?' → '+Er(r.end):''}</code></div>
+        <div class="rq">${Er(r.desc)}</div><div class="rq" style="color:var(--ink-3);margin-top:4px">${E('Expected:')} ${Er(r.outcome)}</div></div>
+      <div class="reqact"><input class="pmprim" id="amt-${Er(r.id)}" value="${r.amount}" style="width:90px" inputmode="numeric"><button class="ok" data-mdfdec="${Er(r.id)}" data-ok="1">${E('Approve')}</button><button data-mdfdec="${Er(r.id)}" data-ok="0">${E('Decline')}</button></div></div>`).join('')}
+    ${cl.map(c=>{const r=MdfStore.reqs().find(x=>x.id===c.rid)||{title:'—'};return `<div class="reqcard"><div class="reqmain"><h4>${E('Claim')} ${Er(c.id)} <span style="font-weight:500;color:var(--ink-3);font-size:11.5px">${E('against')} ${Er(c.rid)} · ${Er(r.title)}</span></h4>
+        <div class="reqdelta"><code>${fmtUsd(c.amount)}</code>${c.proof.map(p=>`<code>${Er(p)}</code>`).join('')}</div></div>
+      <div class="reqact"><button class="ok" data-mdfcl="${Er(c.id)}" data-ok="1">${E('Approve & pay')}</button><button data-mdfcl="${Er(c.id)}" data-ok="0">${E('Reject')}</button></div></div>`}).join('')}`;
+}
+document.addEventListener('click',ev=>{
+  const t=ev.target.closest('[data-mdfdec],[data-mdfcl]'); if(!t) return;
+  if(t.dataset.mdfdec!==undefined){ const a=document.getElementById('amt-'+t.dataset.mdfdec); MdfStore.decideReq(t.dataset.mdfdec,t.dataset.ok==='1',a?+String(a.value).replace(/\D/g,''):0); renderPRM(); return; }
+  MdfStore.decideClaim(t.dataset.mdfcl,t.dataset.ok==='1'); renderPRM();
+});
 
 /* ══════════ HOME: WHERE YOU ARE ══════════ */
 function whereYouAre(){
   const cards=[];
-  if(!onboardComplete()){ const i=obActive(), s=ONBOARD.stages[Math.min(i,5)];
-    cards.push(`<div class="card"><div class="k">${E('Getting started')}</div><h3>${E('Stage')} ${i+1} ${E('of')} ${ONBOARD.stages.length}: ${E(s.n)}</h3>
-      <div class="ppmeter" style="margin:10px 0 8px"><i style="width:${obPct()}%"></i></div>
-      <div class="sm">${gateMet(s,i)?E('Everything for this stage is done — mark it complete to unlock the next.'):E('To finish it:')+' '+E(s.gate).toLowerCase()+'.'}</div>
+  /* Getting started: value = stage, track = progress, subline = what finishes it. */
+  if(!onboardComplete()){ const i=obActive(), s=ONBOARD.stages[Math.min(i,5)], met=gateMet(s,i);
+    cards.push(`<div class="wy"><div class="gl">${E('Getting started')}</div>
+      <div class="gv">${i+1}<i>${E('of')} ${ONBOARD.stages.length} · ${E(s.n)}</i></div>
+      <div class="gt"><i style="width:${Math.max(3,Math.round((ONBOARD.stages.filter((x,k)=>obStageDone(k)).length+Progress.onboardCk(i,s.ck.length).filter(Boolean).length/s.ck.length)/ONBOARD.stages.length*100))}%;background:var(--acc)"></i></div>
+      <div class="gs">${met?E('Everything for this stage is done. Mark it complete to unlock the next.'):E('To finish it:')+' '+E(s.gate).replace(/^./,c=>c.toLowerCase())+'.'}</div>
       <button class="go" data-nav="onboard">${E('Continue')} →</button></div>`); }
-  if(DEALS.length){ const byPh=WS.map((w,i)=>({w,n:DEALS.filter(d=>d.ph===i).length})).filter(x=>x.n);
+  /* Your deals: value = count, track = one bar split by phase, legend = dot + count + phase. */
+  if(DEALS.length){ const byPh=WS.map((w,i)=>({w,n:DEALS.filter(d=>d.ph===i).length}));
     const nxt=DEALS.slice().sort((a,b)=>overall(b)-overall(a))[0]; const {w,s}=activeStage(nxt);
-    cards.push(`<div class="card"><div class="k">${E('Your deals')}</div>
-      <h3>${DEALS.length===1?E('1 deal in flight'):DEALS.length+' '+E('deals in flight')}</h3>
-      <div class="ppchips" style="margin:8px 0 10px">${byPh.map(x=>`<span class="pill" style="background:${x.w.color};color:#fff">${x.n} ${E(x.w.short)}</span>`).join('')}</div>
-      <div class="sm">${E('Closest to its next gate:')} <b>${E(nxt.cu)}</b> — ${E(w.short)}, ${E(s.n)}.</div>
-      <button class="go" data-deal="${Er(nxt.id)}">${E('Open that deal')} →</button></div>`); }
-  else cards.push(`<div class="card"><div class="k">${E('Deals')}</div><h3>${E('No deals yet')}</h3>
-      <div class="sm" style="margin-top:6px">${canRegisterDeal()?E('You are ready. Register your first opportunity and the Pre-Sales flow opens for it.'):E('Deal registration unlocks at Sales readiness.')}</div>
-      <button class="go" data-act="${canRegisterDeal()?'register':'lead'}">${canRegisterDeal()?E('Register a deal'):E('Submit a lead instead')} →</button></div>`);
-  const c=complianceStatus();
-  const short=c.rows.filter(r=>!r.ok);
-  cards.push(`<div class="card"><div class="k">${E('Program standing')}</div><h3>${Er(c.tier)} ${E('partner')}</h3>
-    <div class="ppchips" style="margin:8px 0 10px"><span class="pill ${c.ok?'ok':'warn'}">${c.ok?E('In good standing'):E('Needs attention')}</span></div>
-    <div class="sm">${short.length
-      ? short.map(r=>r.bool?E(r.l)+' — '+E('not done'):E(r.l)+': '+r.have+' '+E('of')+' '+r.need+' '+E('needed')).join('. ')+'.'
-      : E('You meet every requirement for this tier.')}${c.next&&!c.nextGap.length?' '+E('You already qualify for')+' '+Er(c.next)+' — '+E('ask your PRM for a review.'):''}</div>
-    <button class="go" data-nav="${ROLE==='padmin'?'company':'certs'}">${E('Details')} →</button></div>`);
-  return `<div class="sh" style="margin-top:6px"><h2>${E('Where you are')}</h2></div><div class="wya">${cards.join('')}</div>`;
+    cards.push(`<div class="wy"><div class="gl">${E('Your deals')}</div>
+      <div class="gv">${DEALS.length}<i>${E('in flight')}</i></div>
+      <div class="gt">${byPh.filter(x=>x.n).map(x=>`<i style="width:${x.n/DEALS.length*100}%;background:${x.w.color}"></i>`).join('')}</div>
+      <div class="lg">${byPh.map(x=>`<span><s style="background:${x.w.color}"></s><b>${x.n}</b> ${E(x.w.short)}</span>`).join('')}</div>
+      <div class="gs">${DealStore.pendingRegs().length?`<b>${DealStore.pendingRegs().length}</b> ${E('awaiting registration approval')} · `:''}${E('Next gate:')} <b>${E(nxt.cu)}</b> · ${E(s.n)}</div>
+      <button class="go" data-deal="${Er(nxt.id)}">${E('Open')} →</button></div>`); }
+  else cards.push(`<div class="wy"><div class="gl">${E('Your deals')}</div>
+      <div class="gv">0<i>${E('in flight')}</i></div>
+      <div class="gt"></div>
+      <div class="gs">${canRegisterDeal()?E('You are ready. Register your first opportunity and Pre-Sales opens for it.'):E('Deal registration unlocks at Sales readiness.')}</div>
+      <button class="go" data-act="${canRegisterDeal()?'register':'lead'}">${canRegisterDeal()?E('Register a deal'):E('Submit a lead')} →</button></div>`);
+  /* Program standing: value = tier, status dot, subline = only what is short. */
+  const c=complianceStatus(), short=c.rows.filter(r=>!r.ok);
+  cards.push(`<div class="wy"><div class="gl">${E('Program standing')}</div>
+    <div class="gv">${Er(c.tier)}<i>${E('partner')}</i></div>
+    <div class="st"><s style="background:${c.ok?'var(--ok)':'var(--warn)'}"></s>${c.ok?E('In good standing'):E('Needs attention')}</div>
+    <div class="gs">${short.length
+      ? short.map(r=>r.bool?E(r.l)+' '+E('not yet declared'):E(r.l)+': <b>'+(r.fmt==='usd'?fmtUsd(r.have):r.have)+'</b> '+E('of')+' '+(r.fmt==='usd'?fmtUsd(r.need):r.need)).join(' · ')
+      : E('Every requirement met.')+(c.next&&!c.nextGap.length?' '+E('You qualify for')+' '+Er(c.next)+'.':'')}</div>
+    <button class="go" data-nav="program">${E('Details')} →</button></div>`);
+  return `<div class="glabel" style="margin-top:8px"><span class="kick">${E('Where you are')}</span></div><div class="wya">${cards.join('')}</div>`;
 }
 
 /* ══════════ ROLES ══════════ */
 let ROLE='splash';
 const ROLES=[
- {id:'partner',nm:'Brent Robertson',ini:'BR',n:'Partner',who:'ABC Consulting · Gold Reseller',
+ {id:'partner',nm:'Brent Robertson',ini:'BR',n:'Partner',who:'ABC Consulting · Premier Reseller',
   d:'A reseller working their own deals through the four phases.',ic:'cube'},
  {id:'prm',nm:'Helio Samora',ini:'HS',n:'Partner Relationship Manager',who:'Aptean · NA and LATAM',
   d:'Nine partners. Where to spend the week, and why.',ic:'life'},
@@ -5676,7 +6198,7 @@ function renderPRM(){
        T('Achieved new business for the selected period.'))
     +pipeBlock(PRM_PIPE_P[PERIOD])
     +insightCards(PIPE_INSIGHT,'Pipeline insights','What the shape of the pipeline is telling you.')
-    +prmLeadsQueue()+table+plansSection()+act+footer();
+    +prmRegQueue()+prmLeadsQueue()+prmCoopQueue()+table+plansSection()+act+footer();
 }
 
 /* ══════════ EXEC VIEW ══════════ */
@@ -5903,16 +6425,25 @@ function renderAdmin(){
         <div class="hstat"><div class="v num">5</div><div class="l">${E('Gaps')}</div></div></div>
     </div></section>`;
 
-  const map=`<div class="sh"><h2>${E('The flow map')}</h2>
-      <span class="hint">${E('Every stage in every phase, and what is attached to it. Empty cells are where a partner finds nothing.')}</span></div>
+  const prodSel=`<div class="fchips" style="margin:-2px 0 12px"><span class="prodl" style="align-self:center;margin-right:4px">${E('Product')}</span>
+      <button class="fch ${FMPROD==='all'?'on':''}" data-fmp="all">${E('All products')}</button>
+      ${PRODUCTS.map(k=>{const n=all.filter(m=>!m.cross&&m.prods.indexOf(k)>=0).length;
+        return `<button class="fch prod ${FMPROD===k?'on':''}" data-fmp="${Er(k)}" title="${Er(PRODUCT_NAME[k]||k)}">${Er(k)} <i>${n}</i></button>`}).join('')}</div>`;
+  const scopedStage=(w,i)=>(byStage[w.id+':'+i]||[]).filter(m=>FMPROD==='all'?true:matFor(m,FMPROD));
+  const gaps=FMPROD==='all'?0:FLOWS.reduce((s,w)=>s+w.stages.filter((x,i)=>!scopedStage(w,i).length).length,0);
+  const map=`<div class="sh"><h2>${E('The flow map')}${FMPROD!=='all'?` <span style="font-weight:500;color:var(--ink-3)">· ${Er(PRODUCT_NAME[FMPROD]||FMPROD)}</span>`:''}</h2>
+      <span class="hint">${FMPROD==='all'
+        ? E('Pick a product to see its flow. Materials marked All products appear in every flow.')
+        : (gaps?gaps+' '+E('stages have nothing for this product. A partner selling it finds an empty stage there.'):E('Every stage has something for this product.'))}</span></div>
+    ${prodSel}
     <div class="fmwrap"><div class="fmgrid">
       ${FLOWS.map(w=>`<div class="fmcol">
         <div class="fmh"><span class="cd" style="background:${w.color}"></span>${E(w.name)}${w.scope==='company'?` <i style="font-style:normal;font-weight:400;opacity:.7">· ${E('per company')}</i>`:''}</div>
-        ${w.stages.map((s,i)=>{const list=byStage[w.id+':'+i]||[];
-          const req=list.some(a=>a.req), thin=list.length<3;
-          return `<button class="fmc ${thin?'thin':''} ${req?'':'noreq'}" data-fm="${w.id}:${i}">
+        ${w.stages.map((s,i)=>{const list=scopedStage(w,i);
+          const req=list.some(a=>a.req), thin=list.length<3, empty=!list.length;
+          return `<button class="fmc ${thin?'thin':''} ${req?'':'noreq'} ${empty?'empty':''}" data-fm="${w.id}:${i}">
             <span class="fmn">${i+1}. ${E(s.n)}</span>
-            <span class="fmmeta"><b>${list.length}</b> ${E('assets')}
+            <span class="fmmeta"><b>${list.length}</b> ${E('assets')}${empty&&FMPROD!=='all'?` <i class="warn">${E('gap')}</i>`:''}
               ${req?`<i class="ok">${E('required set')}</i>`:`<i class="warn">${E('no required artifact')}</i>`}</span>
             <span class="fmbar">${list.map(a=>`<i class="${a.t}"></i>`).join('')}</span></button>`}).join('')}
       </div>`).join('')}
@@ -6022,7 +6553,7 @@ document.addEventListener('change',ev=>{
 let PD_OPEN='';
 function openStageAdmin(key){
   const [wid,si]=key.split(':'); const w=flowById(wid), s=w.stages[+si];
-  const list=MaterialStore.atStage(wid,+si);
+  const list=stageMaterials(wid,+si,FMPROD==='all'?null:FMPROD);
   showDW(`<div class="dwh"><button class="x" data-x aria-label="Close">${sv('<path d="M6 6l12 12M18 6L6 18"/>',14,2.4)}</button>
       <div class="k">${E(w.name)} · ${E('Stage')} ${+si+1}</div><h2>${E(s.n)}</h2>
       <div style="margin-top:10px"><span class="ep on">${list.length} ${E('assets attached')}</span>
@@ -6347,6 +6878,7 @@ try{const _p=localStorage.getItem('aph-period'); if(['m','q','y'].includes(_p))P
   if(q.get('agents')==='1') FLAGS.agents=true;
   if(q.get('exec')==='1') FLAGS.exec=true;
   if(q.get('fresh')==='1'){ DEALS.length=0; } /* brand-new partner: no deals yet */
+  else DealStore.applyAll();
   Progress.applyAll();
   if(FLAGS.showDemoData && !FLAGS.demo && !sessionStorage.getItem('aph-demobar-x')){
     const bar=document.createElement('div'); bar.className='demobar';
